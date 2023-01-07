@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = {
+	notebooks: [],
+};
 
 // export const getNotebooks = createAsyncThunk(
 // 	"notebooks/getnotebooks",
@@ -29,9 +31,9 @@ const notebooksSlice = createSlice({
 	reducers: {},
 	extraReducers: {
 		[getNotebooks.fulfilled](state, action) {
-			state = action.payload;
+			state.notebooks = action.payload;
 		},
 	},
 });
 
-export default notebooksSlice;
+export default notebooksSlice.reducer;

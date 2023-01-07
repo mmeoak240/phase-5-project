@@ -9,33 +9,37 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Notes from "./Notes";
 import { getNotebooks } from "./features/notebooks/notebooksSlice";
+import { userAdded } from "./features/users/usersSlice";
 
 function App() {
-	const [user, setUser] = useState("");
-	// const [notebooks, setNotebooks] = useState([]);
+	// const [user, setUser] = useState("");
 	const [notes, setNotes] = useState([]);
 
 	const dispatch = useDispatch();
-	const notebooks = useSelector((state) => state);
-	console.log(notebooks);
+	const notebooks = useSelector((state) => state.notebooks.notebooks);
+	const user = useSelector((state) => state.users.user);
+	console.log(user);
+
+	// useEffect(() => {
+	// 	fetch("/me").then((r) => {
+	// 		if (r.ok) {
+	// 			r.json().then((user) => setUser(user));
+	// 		}
+	// 	});
+	// }, []);
 
 	useEffect(() => {
-		fetch("/me").then((r) => {
-			if (r.ok) {
-				r.json().then((client) => setUser(client));
+		fetch("/me").then((res) => {
+			if (res.ok) {
+				res.json().then((user) => {
+					dispatch(userAdded(user));
+				});
 			}
 		});
 	}, []);
 
-	// useEffect(() => {
-	// 	fetch("/note_books")
-	// 		.then((r) => r.json())
-	// 		.then((data) => setNotebooks(data));
-	// 	console.log(notebooks);
-	// }, []);
-
 	useEffect(() => {
-		dispatch(getNotebooks);
+		dispatch(getNotebooks());
 	}, []);
 
 	useEffect(() => {
