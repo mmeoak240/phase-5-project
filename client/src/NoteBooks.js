@@ -3,10 +3,13 @@ import NavBar from "./NavBar";
 import NoteBookCard from "./NoteBookCard";
 import Notes from "./Notes";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
-const NoteBooks = ({ notebooks, onNoteSubmit }) => {
+const NoteBooks = ({ onNoteSubmit }) => {
 	// console.log(notebooks);
 	const [flag, setFlag] = useState(true);
+
+	const notebooks = useSelector((state) => state.notebooks.notebooks);
 
 	function showNotes() {
 		setFlag(!flag);

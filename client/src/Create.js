@@ -1,15 +1,20 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import NavBar from "./NavBar";
 
-const Create = ({ onNotebookSubmit, notebooks }) => {
+const Create = ({ onNotebookSubmit }) => {
 	const [subject, setSubject] = useState("");
 	const [cover, setCover] = useState("");
 	const [content, setContent] = useState("");
 	const [tab, setTab] = useState("");
+	const [notebookId, setNotebookId] = useState(null);
 	const [errors, setErrors] = useState([]);
 
+	const notebooks = useSelector((store) => store.notebooks.notebooks);
+	const user = useSelector((store) => store.users.user);
+
 	const handleChange = (event) => {
-		setSubject(event.target.value);
+		setNotebookId(event.target.value);
 	};
 
 	function handleSubmit(e) {
@@ -22,6 +27,8 @@ const Create = ({ onNotebookSubmit, notebooks }) => {
 			body: JSON.stringify({
 				tab,
 				content,
+				user_id: user.id,
+				note_book_id: notebookId,
 				note_book_attributes: [subject, cover],
 			}),
 		}).then((r) => {
@@ -45,7 +52,7 @@ const Create = ({ onNotebookSubmit, notebooks }) => {
 				<select name="notebooks" id="notebooks" onChange={handleChange}>
 					<option value="">Select Notebook</option>
 					{notebooks.map((notebook) => (
-						<option value={notebook.subject}>{notebook.subject}</option>
+						<option value={notebook.id}>{notebook.subject}</option>
 					))}
 				</select>
 

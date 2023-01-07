@@ -66,25 +66,14 @@ function App() {
 			<main>
 				{user ? (
 					<Routes>
-						<Route
-							exact
-							path="/"
-							element={<Home user={user} notes={notes} />}
-						/>
+						<Route exact path="/" element={<Home />} />
 						<Route
 							path="/noteBooks"
-							element={
-								<NoteBooks notebooks={notebooks} onNoteSubmit={onNoteSubmit} />
-							}
+							element={<NoteBooks onNoteSubmit={onNoteSubmit} />}
 						/>
 						<Route
 							path="/addNoteBook"
-							element={
-								<Create
-									onNotebookSubmit={onNotebookSubmit}
-									notebooks={notebooks}
-								/>
-							}
+							element={<Create onNotebookSubmit={onNotebookSubmit} />}
 						/>
 						{/* <Route
 							path="notes"
