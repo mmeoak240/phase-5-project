@@ -1,8 +1,15 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../src/features/users/usersSlice";
 
 const NavBar = () => {
+	const dispatch = useDispatch();
+	// function handleLogoutClick() {
+	// 	fetch("/logout", { method: "DELETE" });
+	// }
+
 	function handleLogoutClick() {
-		fetch("/logout", { method: "DELETE" });
+		dispatch(logout());
 	}
 
 	const navigate = useNavigate();
@@ -44,13 +51,7 @@ const NavBar = () => {
 						<a class="navbar-brand" id="linkSize">
 							<NavLink to="/addNoteBook">Create</NavLink>
 						</a>
-						<button
-							onClick={() => {
-								handleLogoutClick();
-								ChangeUrl();
-							}}
-							id="logout"
-						>
+						<button id="logout" onClick={handleLogoutClick}>
 							Logout
 						</button>
 					</div>
