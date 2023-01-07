@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,32 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+#centerTitle {
+	/* text-align: center; */
+	margin-left: 1400px;
+	font-size: 50px;
+}
+
+#centerNavLinks {
+	/* text-align: center; */
+	margin-left: 1330px;
+}
+
+#linkSize {
+	font-size: 30px;
+}
+
+.noteBookSize {
+	height: 300px;
+	width: 250px;
+}
+
+.noteBookTextCentered {
+	background-color: grey;
+	width: 75px;
+	height: 75px;
+	padding-top: 20px;
+	padding-left: 10px;
 }
