@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../src/features/users/usersSlice";
 import "./App.css";
 
 function Login({ onLogin }) {
@@ -7,31 +9,37 @@ function Login({ onLogin }) {
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	const navigate = useNavigate;
+	const dispatch = useDispatch();
 
-	function handleSubmit(e) {
-		e.preventDefault();
-		fetch("/login", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ username, password }),
-		}).then((r) => {
-			if (r.ok) {
-				r.json().then((client) => onLogin(client));
-			} else {
-				r.json().then((error) => setErrors(error.error));
-			}
-			setUsername("");
-			setPassword("");
-		});
+	// function handleSubmit(e) {
+	// 	e.preventDefault();
+	// 	fetch("/login", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 		},
+	// 		body: JSON.stringify({ username, password }),
+	// 	}).then((r) => {
+	// 		if (r.ok) {
+	// 			r.json().then((client) => onLogin(client));
+	// 		} else {
+	// 			r.json().then((error) => setErrors(error.error));
+	// 		}
+	// 		setUsername("");
+	// 		setPassword("");
+	// 	});
+	// }
+
+	function handleSubmit(event) {
+		event.preventDefault();
+		const userInfo = {
+			username,
+			password,
+		};
+		dispatch(login(userInfo));
+		setUsername("");
+		setPassword("");
 	}
-	// const ChangeUrl = () => {
-	// 	navigate("/");
-	// };
-
-	// else console.log(r) r.errors.full_messages = [ "errors"]
 
 	return (
 		<body>

@@ -12,6 +12,12 @@ export const login = createAsyncThunk("users/login", async (userInfo) => {
 	return user;
 });
 
+export const logout = createAsyncThunk("users/logout", () => {
+	fetch("/logout", {
+		method: "DELETE",
+	});
+});
+
 const initialState = {
 	user: null,
 };
@@ -27,6 +33,9 @@ const usersSlice = createSlice({
 	extraReducers: {
 		[login.fulfilled](state, action) {
 			state.user = action.payload;
+		},
+		[logout.fulfilled](state) {
+			state.user = null;
 		},
 	},
 });
