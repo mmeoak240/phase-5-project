@@ -58,9 +58,9 @@ function App() {
 		// setNotebooks([...notes, note]);
 	};
 
-	const onLogin = (user) => {
-		setUser(user);
-	};
+	// const onLogin = (user) => {
+	// 	setUser(user);
+	// };
 	return (
 		<>
 			<main>
@@ -93,12 +93,8 @@ function App() {
 					</Routes>
 				) : (
 					<Routes>
-						<Route
-							exact
-							path="/signup"
-							element={<Signup onLogin={onLogin} />}
-						></Route>
-						<Route exact path="/" element={<Login onLogin={onLogin} />}></Route>
+						<Route exact path="/signup" element={<Signup />}></Route>
+						<Route exact path="/" element={<Login />}></Route>
 					</Routes>
 				)}
 			</main>
