@@ -18,7 +18,6 @@ function App() {
 	const dispatch = useDispatch();
 	const notebooks = useSelector((state) => state.notebooks.notebooks);
 	const user = useSelector((state) => state.users.user);
-	console.log(user);
 
 	// useEffect(() => {
 	// 	fetch("/me").then((r) => {

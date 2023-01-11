@@ -26,11 +26,17 @@ const Create = () => {
 		const newNoteNotebook = {
 			tab,
 			content,
-			user_id: user.id,
 			note_book_id: notebookId,
-			note_book_attributes: [subject, cover],
+			note_book_attributes: [
+				{
+					subject: subject,
+					cover: cover,
+				},
+			],
 		};
 		dispatch(createNote(newNoteNotebook));
+		console.log("In Create handleSubmit");
+		console.log(newNoteNotebook);
 		setSubject("");
 		setCover("");
 		setContent("");
@@ -70,6 +76,7 @@ const Create = () => {
 			<div>
 				<h1>Create</h1>
 				<form onSubmit={handleSubmit}>
+					{/* SELECTOR WITH ONCHANGE*/}
 					<select name="notebooks" id="notebooks" onChange={handleChange}>
 						<option value="">Select Notebook</option>
 						{notebooks.map((notebook) => (
@@ -78,6 +85,7 @@ const Create = () => {
 					</select>
 					<div></div>
 					<h4>or create new notebook</h4>
+					{/* NEW NOTEBOOK INPUTS */}
 					<label>Subject</label>
 					<input
 						type="text"
@@ -93,6 +101,7 @@ const Create = () => {
 						onChange={(e) => setCover(e.target.value)}
 					/>
 					<br></br>
+					{/* NEW NOTE INPUTS */}
 					<label>Tab</label>
 					<input
 						type="text"

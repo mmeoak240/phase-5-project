@@ -4,6 +4,7 @@ const initialState = {
 	notes: [],
 };
 
+// NOTE POST IN REDUX LIBRARY
 export const createNote = createAsyncThunk(
 	"assignments/addAssignment",
 	async (newNote) => {
@@ -15,6 +16,8 @@ export const createNote = createAsyncThunk(
 			body: JSON.stringify(newNote),
 		});
 		const note = await res.json();
+		console.log("in noteSlice POST");
+		console.log(note);
 		return note;
 	}
 );
