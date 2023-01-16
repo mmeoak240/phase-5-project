@@ -2,19 +2,25 @@ import NoteBookNav from "./NoteBookNav";
 import NavBar from "./NavBar";
 import { NavLink, useNavigate } from "react-router-dom";
 import NoteBookCard from "./NoteBookCard";
+import { logout } from "../src/features/users/usersSlice";
 import Notes from "./Notes";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const NoteBooks = ({ onNoteSubmit }) => {
 	// console.log(notebooks);
 	const [flag, setFlag] = useState(true);
 
 	const notebooks = useSelector((state) => state.notebooks.notebooks);
+	const dispatch = useDispatch();
 
 	function showNotes() {
 		setFlag(!flag);
 		console.log("show");
+	}
+
+	function handleLogoutClick() {
+		dispatch(logout());
 	}
 
 	return (
@@ -42,6 +48,9 @@ const NoteBooks = ({ onNoteSubmit }) => {
 						<a>
 							<NavLink to="/create">Create</NavLink>
 						</a>
+					</li>
+					<li>
+						<a onClick={handleLogoutClick}>Logout</a>
 					</li>
 				</ul>
 			</nav>

@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
 
   def create
-    byebug
+    # byebug
     note = Note.create(note_params)
     if note.valid?
       render json: note, status: :created
@@ -40,6 +40,6 @@ class NotesController < ApplicationController
 
 # NEW PARAMS -- DOES NOTE_BOOK NEED TO BE PLURAL?
   def note_params
-    params.require(:note).permit(:id, :content, :tab, :note_book_id, note_book_attributes: [:subject, :cover])
+    params.require(:note).permit(:id, :content, :tab, :note_book_id, :client_id, note_book_attributes: [:subject, :cover])
   end
 end

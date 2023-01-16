@@ -26,6 +26,7 @@ const Create = () => {
 		const newNoteNotebook = {
 			tab,
 			content,
+			user_id: user.id,
 			note_book_id: notebookId,
 			note_book_attributes: [
 				{
