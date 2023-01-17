@@ -20,7 +20,7 @@ export const getNotebooks = createAsyncThunk(
 	async () => {
 		const r = await fetch("/note_books");
 		const noteBooks = await r.json();
-		console.log(noteBooks);
+		// console.log(noteBooks);
 		return noteBooks;
 	}
 );

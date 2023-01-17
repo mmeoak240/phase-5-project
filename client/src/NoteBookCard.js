@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const NoteBookCard = ({ notebook, showNotes }) => {
 	return (
-		<NavLink to={`/note_books/${notebook.id}`}>
+		<NavLink to={`/notes/${notebook.id}`}>
 			<p class="noteBookTextCentered">{notebook.subject}</p>
 			<button onClick={showNotes}>
 				<img src={notebook.cover} alt="Notebook cover" class="noteBookSize" />

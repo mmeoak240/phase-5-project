@@ -1,19 +1,25 @@
 import HTMLFlipBook from "react-pageflip";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Notes = () => {
-	const [pageNumber, setPageNumber] = useState(0);
+	const [page, setpage] = useState(0);
+	const [pageNumber, setPageNumber] = useState(1);
+	const params = useParams();
+	const notebookId = params.notebook_id;
 
 	function nextPage() {
-		if (pageNumber >= 0 && pageNumber < testNotes.length - 1) {
+		if (page >= 0 && page < testNotes.length - 1) {
+			setpage(page + 1);
 			setPageNumber(pageNumber + 1);
-		} else setPageNumber(pageNumber);
+		} else setpage(page);
 	}
 
 	function previousPage() {
-		if (pageNumber >= 1) {
+		if (page >= 1) {
+			setpage(page - 1);
 			setPageNumber(pageNumber - 1);
-		} else setPageNumber(0);
+		} else setpage(0);
 	}
 
 	const testNotes = [
@@ -34,11 +40,23 @@ const Notes = () => {
 			note_book_id: 3,
 		},
 		{ tab: "fish", content: "these are notes about fish", note_book_id: 4 },
+		{
+			tab: "fish",
+			content: "more notes on fish",
+			note_book_id: 4,
+		},
 	];
 
-	const pages = testNotes.map((testNote) => (
+	const selectedNotebookPages = testNotes.filter(
+		(note) => note.note_book_id == notebookId
+	);
+	console.log(page);
+	console.log(testNotes);
+	const pages = selectedNotebookPages.map((testNote) => (
 		<div class="front">
-			<h2 style={{ color: "black" }}>Page 1 - {testNote.tab}</h2>
+			<h2 style={{ color: "black" }}>
+				Page {pageNumber} - {testNote.tab}
+			</h2>
 			<p style={{ color: "black" }}>{testNote.content}</p>
 
 			<button class="next-btn" onClick={nextPage}>
@@ -53,7 +71,7 @@ const Notes = () => {
 	return (
 		<div class="book">
 			<div class="flip-book">
-				<p>{pages[pageNumber]}</p>
+				<p>{pages[page]}</p>
 			</div>
 		</div>
 	);
