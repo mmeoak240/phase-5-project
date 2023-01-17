@@ -74,6 +74,7 @@ function App() {
 							path="/create"
 							element={<Create onNotebookSubmit={onNotebookSubmit} />}
 						/>
+						<Route path="/notes/:note_book_id" element={<Notes />} />
 						{/* <Route
 							path="notes"
 							element={<Notes notes={notes} onNoteSubmit={onNoteSubmit} />}

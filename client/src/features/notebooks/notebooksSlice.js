@@ -25,6 +25,16 @@ export const getNotebooks = createAsyncThunk(
 	}
 );
 
+export const getNotebook = createAsyncThunk(
+	"notebooks/getNotebook",
+	async () => {
+		const r = await fetch("/note_books/:id");
+		const noteBook = await r.json();
+		console.log(noteBook);
+		return noteBook;
+	}
+);
+
 const notebooksSlice = createSlice({
 	name: "notebooks",
 	initialState,

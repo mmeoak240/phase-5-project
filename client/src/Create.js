@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createNote } from "../src/features/notes/notesSlice";
 import NavBar from "./NavBar";
+import { logout } from "../src/features/users/usersSlice";
 
 const Create = () => {
 	const [subject, setSubject] = useState("");
@@ -20,6 +21,10 @@ const Create = () => {
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);
 	};
+
+	function handleLogoutClick() {
+		dispatch(logout());
+	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -70,6 +75,9 @@ const Create = () => {
 							<a>
 								<NavLink to="/create">Create</NavLink>
 							</a>
+						</li>
+						<li>
+							<a onClick={handleLogoutClick}>Logout</a>
 						</li>
 					</ul>
 				</nav>
