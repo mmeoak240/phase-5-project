@@ -1,6 +1,7 @@
 import HTMLFlipBook from "react-pageflip";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const Notes = () => {
 	const [page, setpage] = useState(0);
@@ -9,7 +10,7 @@ const Notes = () => {
 	const notebookId = params.notebook_id;
 
 	function nextPage() {
-		if (page >= 0 && page < testNotes.length - 1) {
+		if (page >= 0 && page < selectedNotebookPages.length - 1) {
 			setpage(page + 1);
 			setPageNumber(pageNumber + 1);
 		} else setpage(page);
@@ -69,11 +70,14 @@ const Notes = () => {
 		</div>
 	));
 	return (
-		<div class="book">
-			<div class="flip-book">
-				<p>{pages[page]}</p>
+		<>
+			<NavBar />
+			<div class="book">
+				<div class="flip-book">
+					<p>{pages[page]}</p>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

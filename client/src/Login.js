@@ -64,11 +64,13 @@ function Login({ onLogin }) {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
+
 				<button type="submit">Login</button>
 
-				<button>
-					<NavLink to="/signup">Signup</NavLink>
-				</button>
+				<NavLink to="/signup">
+					<button>Signup</button>
+				</NavLink>
+
 				<ul>
 					<p>{errors}</p>
 				</ul>

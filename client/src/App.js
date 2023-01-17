@@ -65,7 +65,7 @@ function App() {
 			<main>
 				{user ? (
 					<Routes>
-						<Route exact path="/" element={<Home />} />
+						<Route path="/" element={<Home />} />
 						<Route
 							path="/noteBooks"
 							element={<NoteBooks onNoteSubmit={onNoteSubmit} />}
