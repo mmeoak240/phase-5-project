@@ -13,9 +13,11 @@ const NoteBooks = () => {
 
 			<div>
 				<h1>Note Books</h1>
-				<div>
+				<div id="grid" class="centerBooks">
 					{notebooks.map((notebook) => (
-						<NoteBookCard notebook={notebook} key={notebook.id} />
+						<div>
+							<NoteBookCard notebook={notebook} key={notebook.id} />
+						</div>
 					))}
 				</div>
 			</div>

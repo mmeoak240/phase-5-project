@@ -53,16 +53,19 @@
 }
 
 .noteBookSize {
-	height: 300px;
-	width: 250px;
+	height: 490px;
+	width: 350x;
 }
 
 .noteBookTextCentered {
-	background-color: grey;
+	color: rgb(243, 220, 9);
 	width: 75px;
-	height: 75px;
-	padding-top: 20px;
+	height: 40px;
+	padding-top: 10px;
 	padding-left: 10px;
+	margin-left: 75px;
+	font-family: "Prata", serif;
+	font-size: 50px;
 }
 
 /* .createForm {
@@ -182,3 +185,20 @@ input {
 	z-index: 3;
 }
 /* notebook styling */
+
+/* Notebooks grid */
+#grid {
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 10px;
+	margin-left: 350px;
+}
+
+/* .centerBooks {
+	max-width: 500px;
+	margin: auto;
+} */
+#grid > div {
+	padding: 10px;
+}

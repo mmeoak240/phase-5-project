@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createNote } from "../src/features/notes/notesSlice";
+// import "./Dropdown.css";
 import NavBar from "./NavBar";
 
 const Create = () => {
@@ -57,7 +58,7 @@ const Create = () => {
 							<option value={notebook.id}>{notebook.subject}</option>
 						))}
 					</select>
-					<div></div>
+					<br></br>
 					<h4>or create new notebook</h4>
 					{/* NEW NOTEBOOK INPUTS */}
 					<label>Subject</label>
@@ -91,6 +92,7 @@ const Create = () => {
 						onChange={(e) => setContent(e.target.value)}
 						style={{ width: "1300px", height: "800px", fontSize: 20 }}
 					/>
+
 					<button
 						type="submit"
 						id="#formButton {
