@@ -1,4 +1,3 @@
-import HTMLFlipBook from "react-pageflip";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
