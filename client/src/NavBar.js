@@ -20,13 +20,12 @@ const NavBar = () => {
 			<label for="menu-icon"></label>
 			<nav class="nav">
 				<ul class="pt-5">
-					<NavLink to="/home">
-						<li>
-							<a>
-								<NavLink to="/">Home</NavLink>
-							</a>
-						</li>
-					</NavLink>
+					<li>
+						<a>
+							<NavLink to="/">Home</NavLink>
+						</a>
+					</li>
+
 					<li>
 						<a>
 							<NavLink to="/noteBooks">Note Books</NavLink>

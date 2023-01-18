@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
+import { useSelector } from "react-redux";
 
 const Notes = () => {
 	const [page, setpage] = useState(0);
 	const [pageNumber, setPageNumber] = useState(1);
 	const params = useParams();
 	const notebookId = params.notebook_id;
+
+	const notes = useSelector((state) => state.notes.notes);
+	console.log(notes);
 
 	function nextPage() {
 		if (page >= 0 && page < selectedNotebookPages.length - 1) {
@@ -22,42 +26,15 @@ const Notes = () => {
 		} else setpage(0);
 	}
 
-	const testNotes = [
-		{
-			tab: "mammals",
-			content: "these are notes about mammals",
-			note_book_id: 1,
-		},
-		{
-			tab: "reptiles",
-			content: "these are notes about reptiles",
-			note_book_id: 1,
-		},
-		{ tab: "birds", content: "these are notes about birds", note_book_id: 2 },
-		{
-			tab: "insects",
-			content: "these are notes about insects",
-			note_book_id: 3,
-		},
-		{ tab: "fish", content: "these are notes about fish", note_book_id: 4 },
-		{
-			tab: "fish",
-			content: "more notes on fish",
-			note_book_id: 4,
-		},
-	];
-
-	const selectedNotebookPages = testNotes.filter(
+	const selectedNotebookPages = notes.filter(
 		(note) => note.note_book_id == notebookId
 	);
-	console.log(page);
-	console.log(testNotes);
-	const pages = selectedNotebookPages.map((testNote) => (
+	const pages = selectedNotebookPages.map((note) => (
 		<div class="front">
 			<h2 style={{ color: "black" }}>
-				Page {pageNumber} - {testNote.tab}
+				Page {pageNumber} - {note.tab}
 			</h2>
-			<p style={{ color: "black" }}>{testNote.content}</p>
+			<p style={{ color: "black" }}>{note.content}</p>
 
 			<button class="next-btn" onClick={nextPage}>
 				NEXT

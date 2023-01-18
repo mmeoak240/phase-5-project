@@ -9,6 +9,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Notes from "./Notes";
 import { getNotebooks } from "./features/notebooks/notebooksSlice";
+import { getNotes } from "./features/notes/notesSlice";
 import { userAdded } from "./features/users/usersSlice";
 
 function App() {
@@ -39,7 +40,11 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getNotebooks());
-	}, []);
+	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(getNotes());
+	}, [dispatch]);
 
 	useEffect(() => {
 		fetch("/notes")

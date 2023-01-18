@@ -28,12 +28,10 @@ const Create = () => {
 			content,
 			user_id: user.id,
 			note_book_id: notebookId,
-			note_book_attributes: [
-				{
-					subject: subject,
-					cover: cover,
-				},
-			],
+			note_book_attributes: {
+				subject: subject,
+				cover: cover,
+			},
 		};
 		dispatch(createNote(newNoteNotebook));
 		console.log("In Create handleSubmit");
@@ -91,7 +89,7 @@ const Create = () => {
 						id="content"
 						value={content}
 						onChange={(e) => setContent(e.target.value)}
-						style={{ width: "2000px", height: "500px" }}
+						style={{ width: "1300px", height: "800px", fontSize: 20 }}
 					/>
 					<button
 						type="submit"

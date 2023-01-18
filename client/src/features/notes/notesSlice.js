@@ -4,6 +4,12 @@ const initialState = {
 	notes: [],
 };
 
+export const getNotes = createAsyncThunk("notes/getNotes", async () => {
+	const r = await fetch("/notes");
+	const notes = await r.json();
+	return notes;
+});
+
 // NOTE POST IN REDUX LIBRARY
 export const createNote = createAsyncThunk(
 	"assignments/addAssignment",
@@ -29,6 +35,9 @@ const notesSlice = createSlice({
 	extraReducers: {
 		[createNote.fulfilled](state, action) {
 			state.notes.push(action.payload);
+		},
+		[getNotes.fulfilled](state, action) {
+			state.notes = action.payload;
 		},
 	},
 });
