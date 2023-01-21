@@ -7,6 +7,7 @@ const initialState = {
 export const getNotes = createAsyncThunk("notes/getNotes", async () => {
 	const r = await fetch("/notes");
 	const notes = await r.json();
+	console.log(notes);
 	return notes;
 });
 

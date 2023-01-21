@@ -6,5 +6,5 @@ class Note < ApplicationRecord
   belongs_to :note_book
 
   
-  accepts_nested_attributes_for :note_book
+  accepts_nested_attributes_for :note_book, :reject_if => :all_blank
 end

@@ -10,7 +10,6 @@ const Notes = () => {
 	const notebookId = params.notebook_id;
 
 	const notes = useSelector((state) => state.notes.notes);
-	console.log(notes);
 
 	function nextPage() {
 		if (page >= 0 && page < selectedNotebookPages.length - 1) {
@@ -29,6 +28,8 @@ const Notes = () => {
 	const selectedNotebookPages = notes.filter(
 		(note) => note.note_book_id == notebookId
 	);
+
+	console.log(selectedNotebookPages);
 	const pages = selectedNotebookPages.map((note) => (
 		<div class="front">
 			<h2 style={{ color: "black" }}>
@@ -48,11 +49,27 @@ const Notes = () => {
 	return (
 		<>
 			<NavBar />
-			<div class="book">
+			{selectedNotebookPages.length > 0 ? (
+				<div class="book">
+					<div class="flip-book">
+						<p>{pages[page]}</p>
+					</div>
+				</div>
+			) : (
+				<div class="book">
+					<div class="flip-book">
+						<div class="front">
+							<h2 style={{ color: "black" }}>NO NOTES</h2>
+						</div>
+					</div>
+				</div>
+			)}
+
+			{/* <div class="book">
 				<div class="flip-book">
 					<p>{pages[page]}</p>
 				</div>
-			</div>
+			</div> */}
 		</>
 	);
 };

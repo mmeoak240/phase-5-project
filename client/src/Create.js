@@ -20,6 +20,7 @@ const Create = () => {
 
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);
+		console.log(event.target.value);
 	};
 
 	function handleSubmit(e) {
@@ -85,6 +86,7 @@ const Create = () => {
 						onChange={(e) => setTab(e.target.value)}
 					/>
 					<label>Note Page</label>
+
 					<textarea
 						type="text"
 						id="content"
@@ -93,11 +95,7 @@ const Create = () => {
 						style={{ width: "1300px", height: "800px", fontSize: 20 }}
 					/>
 
-					<button
-						type="submit"
-						id="#formButton {
-"
-					>
+					<button type="submit" id="#formButton">
 						Submit
 					</button>
 
