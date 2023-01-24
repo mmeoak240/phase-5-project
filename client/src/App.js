@@ -13,20 +13,11 @@ import { getNotes } from "./features/notes/notesSlice";
 import { userAdded } from "./features/users/usersSlice";
 
 function App() {
-	// const [user, setUser] = useState("");
 	const [notes, setNotes] = useState([]);
 
 	const dispatch = useDispatch();
 	const notebooks = useSelector((state) => state.notebooks.notebooks);
 	const user = useSelector((state) => state.users.user);
-
-	// useEffect(() => {
-	// 	fetch("/me").then((r) => {
-	// 		if (r.ok) {
-	// 			r.json().then((user) => setUser(user));
-	// 		}
-	// 	});
-	// }, []);
 
 	useEffect(() => {
 		fetch("/me").then((res) => {
@@ -52,38 +43,15 @@ function App() {
 			.then((data) => setNotes(data));
 	}, []);
 
-	const onNotebookSubmit = (notebook) => {
-		console.log("Hello");
-		// setNotebooks([...notebooks, notebook]);
-	};
-
-	const onNoteSubmit = (note) => {
-		console.log("World");
-		// setNotebooks([...notes, note]);
-	};
-
-	// const onLogin = (user) => {
-	// 	setUser(user);
-	// };
 	return (
 		<>
 			<main>
 				{user ? (
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route
-							path="/noteBooks"
-							element={<NoteBooks onNoteSubmit={onNoteSubmit} />}
-						/>
-						<Route
-							path="/create"
-							element={<Create onNotebookSubmit={onNotebookSubmit} />}
-						/>
+						<Route path="/noteBooks" element={<NoteBooks />} />
+						<Route path="/create" element={<Create />} />
 						<Route path="/notes/:notebook_id" element={<Notes />} />
-						{/* <Route
-							path="notes"
-							element={<Notes notes={notes} onNoteSubmit={onNoteSubmit} />}
-						/> */}
 					</Routes>
 				) : (
 					<Routes>

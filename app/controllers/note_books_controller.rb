@@ -10,8 +10,8 @@ class NoteBooksController < ApplicationController
 end
 
   def index
-    # user = User.find_by(id: session[:user_id])
-    render json: NoteBook.all, status: :ok
+    user = User.find_by(id: session[:user_id])
+    render json: user.note_books, status: :ok
   end
 
   

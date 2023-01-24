@@ -163,6 +163,13 @@ input {
 	cursor: pointer;
 	color: black;
 }
+.dlt-btn {
+	position: absolute;
+	bottom: 13px;
+	right: 470px;
+	cursor: pointer;
+	color: black;
+}
 #p1 {
 	z-index: 3;
 }

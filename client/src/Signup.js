@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "./features/users/usersSlice";
 
 function SignUp({ onLogin }) {
 	const [username, setUsername] = useState("");
@@ -8,30 +10,40 @@ function SignUp({ onLogin }) {
 	const [major, setMajor] = useState("");
 	const [errors, setErrors] = useState([]);
 
+	const dispatch = useDispatch();
+	const signupErrors = useSelector((state) => state.users.error);
+
 	function onSubmit(e) {
 		e.preventDefault();
-		const client = {
+		const user = {
 			username,
 			password,
 			password_confirmation: passwordConfirmation,
 			major,
 		};
 
-		fetch("/signup", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(client),
-		}).then((r) => {
-			if (r.ok) {
-				r.json().then((user) => onLogin(user));
-			} else {
-				r.json().then((error) => setErrors(error.errors));
-			}
-			setUsername("");
-			setPassword("");
-			setPasswordConfirmation("");
-			setMajor("");
-		});
+		dispatch(signup(user));
+
+		setUsername("");
+		setPassword("");
+		setPasswordConfirmation("");
+		setMajor("");
+
+		// fetch("/signup", {
+		// 	method: "POST",
+		// 	headers: { "Content-Type": "application/json" },
+		// 	body: JSON.stringify(client),
+		// }).then((r) => {
+		// 	if (r.ok) {
+		// 		r.json().then((user) => onLogin(user));
+		// 	} else {
+		// 		r.json().then((error) => setErrors(error.errors));
+		// 	}
+		// 	setUsername("");
+		// 	setPassword("");
+		// 	setPasswordConfirmation("");
+		// 	setMajor("");
+		// });
 	}
 
 	return (
@@ -92,6 +104,13 @@ function SignUp({ onLogin }) {
 				<button type="submit">Signup</button>
 				<NavLink to="/">Login</NavLink>
 			</form>
+			<div>
+				{signupErrors ? (
+					signupErrors.errors.map((error) => <h4>{error}</h4>)
+				) : (
+					<span></span>
+				)}
+			</div>
 		</div>
 	);
 }

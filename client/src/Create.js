@@ -11,12 +11,12 @@ const Create = () => {
 	const [content, setContent] = useState("");
 	const [tab, setTab] = useState("");
 	const [notebookId, setNotebookId] = useState(null);
-	const [errors, setErrors] = useState([]);
 
 	const dispatch = useDispatch();
 
 	const notebooks = useSelector((store) => store.notebooks.notebooks);
 	const user = useSelector((store) => store.users.user);
+	const formErrors = useSelector((state) => state.notes.error);
 
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);
@@ -105,6 +105,13 @@ const Create = () => {
 					))}
 				</ul> */}
 				</form>
+			</div>
+			<div>
+				{formErrors ? (
+					formErrors.errors.map((error) => <h4>{error}</h4>)
+				) : (
+					<span></span>
+				)}
 			</div>
 		</>
 	);

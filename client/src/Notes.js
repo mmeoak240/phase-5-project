@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteNote } from "../src/features/notes/notesSlice";
 
 const Notes = () => {
 	const [page, setpage] = useState(0);
@@ -10,6 +11,7 @@ const Notes = () => {
 	const notebookId = params.notebook_id;
 
 	const notes = useSelector((state) => state.notes.notes);
+	const dispatch = useDispatch();
 
 	function nextPage() {
 		if (page >= 0 && page < selectedNotebookPages.length - 1) {
@@ -23,6 +25,10 @@ const Notes = () => {
 			setpage(page - 1);
 			setPageNumber(pageNumber - 1);
 		} else setpage(0);
+	}
+
+	function handleDeleteNote(id) {
+		dispatch(deleteNote(id));
 	}
 
 	const selectedNotebookPages = notes.filter(
@@ -40,7 +46,14 @@ const Notes = () => {
 			<button class="next-btn" onClick={nextPage}>
 				NEXT
 			</button>
-
+			<button
+				class="dlt-btn"
+				onClick={function () {
+					handleDeleteNote(note.id);
+				}}
+			>
+				DELETE
+			</button>
 			<button class="back-btn" onClick={previousPage}>
 				BACK
 			</button>

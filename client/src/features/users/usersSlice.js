@@ -18,8 +18,21 @@ export const logout = createAsyncThunk("users/logout", () => {
 	});
 });
 
+export const signup = createAsyncThunk("users/signup", async (newUser) => {
+	const res = await fetch("/signup", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(newUser),
+	});
+	const user = await res.json();
+	return user;
+});
+
 const initialState = {
 	user: null,
+	error: null,
 };
 
 const usersSlice = createSlice({
@@ -32,10 +45,21 @@ const usersSlice = createSlice({
 	},
 	extraReducers: {
 		[login.fulfilled](state, action) {
-			state.user = action.payload;
+			if (Object.keys(action.payload).includes("errors")) {
+				state.error = action.payload;
+			} else {
+				state.user = action.payload;
+			}
 		},
 		[logout.fulfilled](state) {
 			state.user = null;
+		},
+		[signup.fulfilled](state, action) {
+			if (Object.keys(action.payload).includes("errors")) {
+				state.error = action.payload;
+			} else {
+				state.user = action.payload;
+			}
 		},
 	},
 });

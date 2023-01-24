@@ -7,9 +7,9 @@ import "./App.css";
 function Login({ onLogin }) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [errors, setErrors] = useState([]);
 
 	const dispatch = useDispatch();
+	const loginErrors = useSelector((state) => state.users.error);
 
 	// function handleSubmit(e) {
 	// 	e.preventDefault();
@@ -72,7 +72,13 @@ function Login({ onLogin }) {
 				</NavLink>
 
 				<ul>
-					<p>{errors}</p>
+					<p>
+						{loginErrors ? (
+							loginErrors.errors.map((error) => <h4>{error}</h4>)
+						) : (
+							<span></span>
+						)}
+					</p>
 				</ul>
 			</form>
 		</body>

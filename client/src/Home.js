@@ -19,6 +19,7 @@ const Home = () => {
 			</a>
 
 			<NavBar />
+			<h4>Welcome {user.username}</h4>
 
 			<div class="section-center">
 				<h1 class="mb-0">All Study</h1>
