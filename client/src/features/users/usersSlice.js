@@ -33,6 +33,7 @@ export const signup = createAsyncThunk("users/signup", async (newUser) => {
 const initialState = {
 	user: null,
 	error: null,
+	status: "idle",
 };
 
 const usersSlice = createSlice({
@@ -44,21 +45,35 @@ const usersSlice = createSlice({
 		},
 	},
 	extraReducers: {
+		[login.pending](state) {
+			state.status = "loading";
+		},
 		[login.fulfilled](state, action) {
 			if (Object.keys(action.payload).includes("errors")) {
 				state.error = action.payload;
 			} else {
 				state.user = action.payload;
 			}
+			state.status = "idle";
+		},
+
+		[logout.pending](state) {
+			state.status = "loading";
 		},
 		[logout.fulfilled](state) {
 			state.user = null;
+			state.status = "idle";
+		},
+
+		[signup.pending](state) {
+			state.status = "loading";
 		},
 		[signup.fulfilled](state, action) {
 			if (Object.keys(action.payload).includes("errors")) {
 				state.error = action.payload;
 			} else {
 				state.user = action.payload;
+				state.status = "idle";
 			}
 		},
 	},

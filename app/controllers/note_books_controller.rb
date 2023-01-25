@@ -1,5 +1,7 @@
 class NoteBooksController < ApplicationController
 
+  before_action :authorize
+
   def create
     notebook = NoteBook.create(notebook_params)
     if notebook.valid?
@@ -10,19 +12,12 @@ class NoteBooksController < ApplicationController
 end
 
   def index
-    user = User.find_by(id: session[:user_id])
-    render json: user.note_books, status: :ok
+    # user = User.find_by(id: session[:user_id])
+    render json:  Current.user.note_books, status: :ok
   end
 
   
-  def show
-    notebook = NoteBook.find_by(id:params[:id])
-    if notebook
-      render json: notebook, status: :ok
-    else
-      render json: {error: "Notebook not found"}
-  end
-end
+ 
 
 def destroy
   noteBook = NoteBook.find_by(id:params[:id])

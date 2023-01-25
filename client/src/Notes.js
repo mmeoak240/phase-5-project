@@ -11,7 +11,13 @@ const Notes = () => {
 	const notebookId = params.notebook_id;
 
 	const notes = useSelector((state) => state.notes.notes);
+	const user = useSelector((state) => state.users.user);
 	const dispatch = useDispatch();
+	const [searchResults, setSearchResults] = useState("");
+
+	const handleChange = (event) => {
+		setSearchResults(event.target.value);
+	};
 
 	function nextPage() {
 		if (page >= 0 && page < selectedNotebookPages.length - 1) {
@@ -32,10 +38,10 @@ const Notes = () => {
 	}
 
 	const selectedNotebookPages = notes.filter(
-		(note) => note.note_book_id == notebookId
+		(note) =>
+			note.note_book_id == notebookId && note.tab.includes(searchResults)
 	);
 
-	console.log(selectedNotebookPages);
 	const pages = selectedNotebookPages.map((note) => (
 		<div class="front">
 			<h2 style={{ color: "black" }}>
@@ -47,7 +53,7 @@ const Notes = () => {
 				NEXT
 			</button>
 			<button
-				class="dlt-btn"
+				class="note-dlt-btn"
 				onClick={function () {
 					handleDeleteNote(note.id);
 				}}
@@ -62,27 +68,17 @@ const Notes = () => {
 	return (
 		<>
 			<NavBar />
-			{selectedNotebookPages.length > 0 ? (
-				<div class="book">
-					<div class="flip-book">
-						<p>{pages[page]}</p>
-					</div>
-				</div>
-			) : (
-				<div class="book">
-					<div class="flip-book">
-						<div class="front">
-							<h2 style={{ color: "black" }}>NO NOTES</h2>
-						</div>
-					</div>
-				</div>
-			)}
-
-			{/* <div class="book">
+			<select name="notes" id="notes" onChange={handleChange}>
+				<option value="">Find by tab</option>
+				{user.notes.map((note) => (
+					<option value={note.tab}>{note.tab}</option>
+				))}
+			</select>
+			<div class="book">
 				<div class="flip-book">
 					<p>{pages[page]}</p>
 				</div>
-			</div> */}
+			</div>
 		</>
 	);
 };

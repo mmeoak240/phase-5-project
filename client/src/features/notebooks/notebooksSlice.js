@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	notebooks: [],
+	error: null,
+	status: "idle",
 };
 
 // export const getNotebooks = createAsyncThunk(
@@ -34,13 +36,37 @@ export const getNotebook = createAsyncThunk(
 	}
 );
 
+export const deleteNotebook = createAsyncThunk(
+	"notebooks/deletenotebook",
+	async (id) => {
+		const res = await fetch(`/note_books/${id}`, {
+			method: "DELETE",
+		});
+		const notebook_1 = await res.json();
+		return notebook_1;
+	}
+);
+
 const notebooksSlice = createSlice({
 	name: "notebooks",
 	initialState,
 	reducers: {},
 	extraReducers: {
+		[getNotebooks.pending](state) {
+			state.status = "loading";
+		},
 		[getNotebooks.fulfilled](state, action) {
 			state.notebooks = action.payload;
+			state.status = "idle";
+		},
+		[deleteNotebook.pending](state) {
+			state.status = "loading";
+		},
+		[deleteNotebook.fulfilled](state, action) {
+			state.notebooks = state.notebooks.filter(
+				(notebook) => notebook.id !== action.payload
+			);
+			state.status = "idle";
 		},
 	},
 });

@@ -163,12 +163,17 @@ input {
 	cursor: pointer;
 	color: black;
 }
-.dlt-btn {
+.note-dlt-btn {
 	position: absolute;
 	bottom: 13px;
 	right: 470px;
 	cursor: pointer;
 	color: black;
+}
+
+.notebook-dlt-btn {
+	margin-left: 150px;
+	cursor: pointer;
 }
 #p1 {
 	z-index: 3;

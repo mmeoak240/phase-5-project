@@ -1,12 +1,10 @@
 import { NavLink } from "react-router-dom";
 import NoteBookCard from "./NoteBookCard";
 import NavBar from "./NavBar";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const NoteBooks = () => {
 	const notebooks = useSelector((state) => state.notebooks.notebooks);
-	const dispatch = useDispatch();
-
 	return (
 		<>
 			<NavBar />

@@ -11,13 +11,15 @@ import Notes from "./Notes";
 import { getNotebooks } from "./features/notebooks/notebooksSlice";
 import { getNotes } from "./features/notes/notesSlice";
 import { userAdded } from "./features/users/usersSlice";
+import { createNote } from "../src/features/notes/notesSlice";
 
 function App() {
-	const [notes, setNotes] = useState([]);
+	// const [notes, setNotes] = useState([]);
 
 	const dispatch = useDispatch();
 	const notebooks = useSelector((state) => state.notebooks.notebooks);
 	const user = useSelector((state) => state.users.user);
+	const notes = useSelector((state) => state.notes.notes);
 
 	useEffect(() => {
 		fetch("/me").then((res) => {
@@ -31,17 +33,17 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getNotebooks());
-	}, [dispatch]);
+	}, []);
 
 	useEffect(() => {
 		dispatch(getNotes());
-	}, [dispatch]);
-
-	useEffect(() => {
-		fetch("/notes")
-			.then((r) => r.json())
-			.then((data) => setNotes(data));
 	}, []);
+
+	// useEffect(() => {
+	// 	fetch("/notes")
+	// 		.then((r) => r.json())
+	// 		.then((data) => setNotes(data));
+	// }, []);
 
 	return (
 		<>

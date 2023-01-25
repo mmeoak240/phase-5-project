@@ -1,7 +1,8 @@
 class NotesController < ApplicationController
 
+  before_action :authorize
+  
   def create
-    # byebug
     note = Note.create(note_params)
     if note.valid?
       render json: note, status: :created

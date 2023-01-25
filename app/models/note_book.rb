@@ -1,6 +1,6 @@
 class NoteBook < ApplicationRecord
-  # validates :subject, presence: true
-  # validates :cover, presence: true
+  validates :subject, presence: true
+  validates :cover, presence: true
 
   has_many :notes
  has_many :users, through: :notes

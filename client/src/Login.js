@@ -11,25 +11,6 @@ function Login({ onLogin }) {
 	const dispatch = useDispatch();
 	const loginErrors = useSelector((state) => state.users.error);
 
-	// function handleSubmit(e) {
-	// 	e.preventDefault();
-	// 	fetch("/login", {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-Type": "application/json",
-	// 		},
-	// 		body: JSON.stringify({ username, password }),
-	// 	}).then((r) => {
-	// 		if (r.ok) {
-	// 			r.json().then((client) => onLogin(client));
-	// 		} else {
-	// 			r.json().then((error) => setErrors(error.error));
-	// 		}
-	// 		setUsername("");
-	// 		setPassword("");
-	// 	});
-	// }
-
 	function handleSubmit(event) {
 		event.preventDefault();
 		const userInfo = {

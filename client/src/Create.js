@@ -49,6 +49,7 @@ const Create = () => {
 			<>
 				<NavBar />
 			</>
+			<h4></h4>
 			<div>
 				<h1>Create</h1>
 				<form onSubmit={handleSubmit}>
@@ -88,6 +89,7 @@ const Create = () => {
 					<label>Note Page</label>
 
 					<textarea
+						maxlength="5000"
 						type="text"
 						id="content"
 						value={content}

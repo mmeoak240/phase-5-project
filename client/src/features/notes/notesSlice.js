@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
 	notes: [],
 	error: null,
+	status: "idle",
 };
 
 export const getNotes = createAsyncThunk("notes/getNotes", async () => {
@@ -40,14 +41,26 @@ const notesSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: {
+		[createNote.pending](state) {
+			state.status = "loading";
+		},
 		[createNote.fulfilled](state, action) {
 			state.notes.push(action.payload);
+			state.status = "idle";
+		},
+		[getNotes.pending](state) {
+			state.status = "loading";
 		},
 		[getNotes.fulfilled](state, action) {
 			state.notes = action.payload;
+			state.status = "idle";
+		},
+		[deleteNote.pending](state) {
+			state.status = "loading";
 		},
 		[deleteNote.fulfilled](state, action) {
 			state.notes = state.notes.filter((note) => note.id !== action.payload);
+			state.status = "idle";
 		},
 	},
 });
