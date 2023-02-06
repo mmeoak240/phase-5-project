@@ -68,6 +68,12 @@
 	font-size: 50px;
 }
 
+.noteTitle {
+	font-size: 50px;
+	margin-bottom: 0px;
+	margin-right: 23px;
+}
+
 /* .createForm {
 	max-width: 500px;
 	margin: auto;
@@ -90,11 +96,13 @@ label {
 
 input {
 	grid-column: 2/3;
+	height: 38px;
+	font-size: 100%;
 }
 
-#formButton {
+/* #formButton {
 	grid-column: 2/3;
-}
+} */
 
 #navText {
 	margin: auto;
@@ -159,7 +167,7 @@ input {
 .back-btn {
 	position: absolute;
 	bottom: 13px;
-	right: 941px;
+	right: 838px;
 	cursor: pointer;
 	color: black;
 }
@@ -174,6 +182,22 @@ input {
 .notebook-dlt-btn {
 	margin-left: 150px;
 	cursor: pointer;
+}
+
+.flashcard-flip-btn {
+	position: absolute;
+	bottom: 13px;
+	right: 300px;
+	cursor: pointer;
+	color: black;
+}
+
+.flashcard-delete-btn {
+	position: absolute;
+	bottom: 13px;
+	right: 535px;
+	cursor: pointer;
+	color: black;
 }
 #p1 {
 	z-index: 3;
@@ -213,4 +237,8 @@ input {
 } */
 #grid > div {
 	padding: 10px;
+}
+
+select {
+	height: 25px;
 }

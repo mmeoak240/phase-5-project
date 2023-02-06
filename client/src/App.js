@@ -8,18 +8,18 @@ import Create from "./Create";
 import Login from "./Login";
 import Signup from "./Signup";
 import Notes from "./Notes";
+import Flashcards from "./Flashcards";
+import Account from "./Account";
+import AddFlashcard from "./AddFlashcard";
 import { getNotebooks } from "./features/notebooks/notebooksSlice";
-import { getNotes } from "./features/notes/notesSlice";
+import { getFlashcards } from "./features/flashcards/flashcardsSlice";
+
 import { userAdded } from "./features/users/usersSlice";
-import { createNote } from "../src/features/notes/notesSlice";
 
 function App() {
-	// const [notes, setNotes] = useState([]);
-
 	const dispatch = useDispatch();
-	const notebooks = useSelector((state) => state.notebooks.notebooks);
+
 	const user = useSelector((state) => state.users.user);
-	const notes = useSelector((state) => state.notes.notes);
 
 	useEffect(() => {
 		fetch("/me").then((res) => {
@@ -31,18 +31,16 @@ function App() {
 		});
 	}, []);
 
+	// useEffect(() => {
+	// 	dispatch(getFlashcards());
+	// }, []);
+
 	useEffect(() => {
 		dispatch(getNotebooks());
-	}, []);
-
-	useEffect(() => {
-		dispatch(getNotes());
-	}, []);
+	}, [dispatch]);
 
 	// useEffect(() => {
-	// 	fetch("/notes")
-	// 		.then((r) => r.json())
-	// 		.then((data) => setNotes(data));
+	// 	dispatch(getNotes());
 	// }, []);
 
 	return (
@@ -51,9 +49,16 @@ function App() {
 				{user ? (
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/noteBooks" element={<NoteBooks />} />
-						<Route path="/create" element={<Create />} />
-						<Route path="/notes/:notebook_id" element={<Notes />} />
+						<Route path="/notebooks" element={<NoteBooks />} />
+						<Route path="/notes/new" element={<Create />} />
+						{/* change */}
+						<Route path="/notebooks/:notebook_id/notes" element={<Notes />} />
+						<Route
+							path="/notebooks/:notebook_id/flashcards"
+							element={<Flashcards />}
+						/>
+						<Route path="/flashcards/new" element={<AddFlashcard />} />
+						<Route path="/users/:user_id/edit" element={<Account />} />
 					</Routes>
 				) : (
 					<Routes>

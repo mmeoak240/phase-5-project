@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../src/features/users/usersSlice";
 import "./App.css";
 
-function Login({ onLogin }) {
+function Login() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 

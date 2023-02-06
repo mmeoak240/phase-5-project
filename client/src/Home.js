@@ -19,10 +19,14 @@ const Home = () => {
 			</a>
 
 			<NavBar />
-			<h4>Welcome {user.username}</h4>
 
 			<div class="section-center">
 				<h1 class="mb-0">All Study</h1>
+				<p style={{ fontSize: "20px" }}>
+					Welcome {user.username}, to your ultimate study buddy! <br></br> To
+					get started navigate to the "Create" page and create your first
+					notebook!
+				</p>
 			</div>
 		</>
 	);

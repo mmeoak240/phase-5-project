@@ -1,8 +1,9 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { logout } from "../src/features/users/usersSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const NavBar = () => {
+	const user = useSelector((state) => state.users.user);
 	const dispatch = useDispatch();
 
 	function handleLogoutClick() {
@@ -28,19 +29,32 @@ const NavBar = () => {
 
 					<li>
 						<a>
-							<NavLink to="/noteBooks">Note Books</NavLink>
+							<NavLink to="/notebooks">Note Books</NavLink>
 						</a>
 					</li>
 					<li>
 						<a>
-							<NavLink to="/create">Create</NavLink>
+							<NavLink to="/notes/new">Create</NavLink>
 						</a>
 					</li>
 
 					<li>
-						<NavLink onClick={handleLogoutClick} to="/">
-							Logout
-						</NavLink>
+						<a>
+							<NavLink to="/flashcards/new">Add Flashcard</NavLink>
+						</a>
+					</li>
+
+					<li>
+						<a>
+							<NavLink to={`/users/${user.id}/edit`}>Account</NavLink>
+						</a>
+					</li>
+					<li>
+						<a>
+							<NavLink onClick={handleLogoutClick} to="/">
+								Logout
+							</NavLink>
+						</a>
 					</li>
 				</ul>
 			</nav>

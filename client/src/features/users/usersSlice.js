@@ -30,6 +30,21 @@ export const signup = createAsyncThunk("users/signup", async (newUser) => {
 	return user;
 });
 
+export const updateUser = createAsyncThunk(
+	"users/editUser",
+	async (updatedUser) => {
+		const res = await fetch(`/users/${updatedUser.id}`, {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(updatedUser),
+		});
+		const user = await res.json();
+		return user;
+	}
+);
+
 const initialState = {
 	user: null,
 	error: null,
@@ -75,6 +90,17 @@ const usersSlice = createSlice({
 				state.user = action.payload;
 				state.status = "idle";
 			}
+		},
+		[updateUser.pending](state) {
+			state.status = "loading";
+		},
+		[updateUser.fulfilled](state, action) {
+			if (Object.keys(action.payload).includes("errors")) {
+				state.error = action.payload;
+			} else {
+				state.user = action.payload;
+			}
+			state.status = "idle";
 		},
 	},
 });

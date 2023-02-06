@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :flashcards
+  resources :users
   resources :notes
   resources :note_books
   post "/signup", to: "users#create"

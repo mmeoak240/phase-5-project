@@ -1,10 +1,23 @@
 import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
 import NoteBookCard from "./NoteBookCard";
 import NavBar from "./NavBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getNotebooks } from "./features/notebooks/notebooksSlice";
+import { getFlashcards } from "./features/flashcards/flashcardsSlice";
 
 const NoteBooks = () => {
+	const dispatch = useDispatch();
 	const notebooks = useSelector((state) => state.notebooks.notebooks);
+
+	// useEffect(() => {
+	// 	dispatch(getNotebooks());
+	// }, [dispatch]);
+
+	// useEffect(() => {
+	// 	dispatch(getFlashcards());
+	// }, [dispatch]);
+
 	return (
 		<>
 			<NavBar />

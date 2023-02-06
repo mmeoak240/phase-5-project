@@ -96,11 +96,6 @@ function SignUp({ onLogin }) {
 					value={major}
 					onChange={(e) => setMajor(e.target.value)}
 				/>
-				<ul>
-					{errors.map((error) => (
-						<li>{error}</li>
-					))}
-				</ul>
 				<button type="submit">Signup</button>
 				<NavLink to="/">Login</NavLink>
 			</form>

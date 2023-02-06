@@ -6,5 +6,6 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
 
   has_many :notes
-  has_many :note_books, through: :notes
+  has_many :flashcards
+  has_many :note_books, -> { distinct }, through: :notes
 end

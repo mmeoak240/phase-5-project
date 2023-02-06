@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
 
-  before_action :authorize
+  # skip_before_action :authorize, only: :index   
   
   def create
     note = Note.create(note_params)
@@ -37,7 +37,6 @@ class NotesController < ApplicationController
 
   private
 
-# NEW PARAMS -- DOES NOTE_BOOK NEED TO BE PLURAL?
   def note_params
     params.require(:note).permit(:id, :content, :tab, :note_book_id, :user_id, note_book_attributes: [:subject, :cover])
   end

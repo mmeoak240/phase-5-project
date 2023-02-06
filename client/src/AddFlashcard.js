@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createNote } from "../src/features/notes/notesSlice";
-import { getNotes } from "./features/notes/notesSlice";
 import "./Dropdown.css";
 import NavBar from "./NavBar";
+import { createFlashcard } from "./features/flashcards/flashcardsSlice";
 
-const Create = () => {
-	const [subject, setSubject] = useState("");
-	const [cover, setCover] = useState("");
-	const [content, setContent] = useState("");
+const AddFlashcard = () => {
+	const [front, setFront] = useState("");
+	const [back, setBack] = useState("");
 	const [tab, setTab] = useState("");
 	const [notebookId, setNotebookId] = useState(null);
 
@@ -19,35 +16,23 @@ const Create = () => {
 	const user = useSelector((store) => store.users.user);
 	const formErrors = useSelector((state) => state.notes.error);
 
-	// useEffect(() => {
-	// 	dispatch(getNotes());
-	// }, [dispatch]);
-
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);
-		console.log(event.target.value);
 	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		const newNoteNotebook = {
+		const newFlashcard = {
 			tab,
-			content,
+			front,
+			back,
 			user_id: user.id,
 			note_book_id: notebookId,
-			note_book_attributes: {
-				subject: subject,
-				cover: cover,
-			},
 		};
-		dispatch(createNote(newNoteNotebook));
-		dispatch(getNotes());
-		console.log("In Create handleSubmit");
-		console.log(newNoteNotebook);
-		setSubject("");
-		setCover("");
-		setContent("");
+		dispatch(createFlashcard(newFlashcard));
 		setTab("");
+		setFront("");
+		setBack("");
 	}
 
 	return (
@@ -56,10 +41,10 @@ const Create = () => {
 				<NavBar />
 			</>
 			<div>
-				<h1>Create</h1>
+				<h1>Make Flashcard</h1>
 				<div className="form-box" style={{ paddingTop: "0px" }}>
 					<form class="form" onSubmit={handleSubmit}>
-						<select name="notebooks" id="notebooks" onChange={handleChange}>
+						<select name="flashcards" id="flashcards" onChange={handleChange}>
 							<option value="">Select Notebook</option>
 							{notebooks.map((notebook) => (
 								<option value={notebook.id}>{notebook.subject}</option>
@@ -67,34 +52,6 @@ const Create = () => {
 						</select>
 
 						<br></br>
-						<h3>or create new notebook</h3>
-						<br></br>
-
-						<div>
-							<hr />
-						</div>
-						<h2>New notebook</h2>
-						<div className="feild1"></div>
-						<input
-							type="text"
-							id="subject"
-							value={subject}
-							onChange={(e) => setSubject(e.target.value)}
-							placeholder="Subject"
-						/>
-						{/* <label>Note Book Cover</label> */}
-						<input
-							type="text"
-							id="cover"
-							value={cover}
-							onChange={(e) => setCover(e.target.value)}
-							placeholder="Notebook cover"
-						/>
-						<br></br>
-
-						<div>
-							<hr />
-						</div>
 						<input
 							type="text"
 							id="tab"
@@ -108,10 +65,20 @@ const Create = () => {
 							maxlength="5000"
 							type="text"
 							id="content"
-							value={content}
-							onChange={(e) => setContent(e.target.value)}
+							value={front}
+							onChange={(e) => setFront(e.target.value)}
 							style={{ width: "1300px", height: "800px", fontSize: 20 }}
-							placeholder="Notes"
+							placeholder="Front of flashcard"
+						/>
+						<br></br>
+						<textarea
+							maxlength="5000"
+							type="text"
+							id="content"
+							value={back}
+							onChange={(e) => setBack(e.target.value)}
+							style={{ width: "1300px", height: "800px", fontSize: 20 }}
+							placeholder="Back of flashcard"
 						/>
 						<br></br>
 						<button type="submit" id="#formButton">
@@ -131,4 +98,4 @@ const Create = () => {
 	);
 };
 
-export default Create;
+export default AddFlashcard;
