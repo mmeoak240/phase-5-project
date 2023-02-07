@@ -1,5 +1,5 @@
 class FlashcardsController < ApplicationController
-  skip_before_action :authorize, only: :create 
+  # skip_before_action :authorize, only: :create 
   # skip_before_action :authorize, only: :index    
   
   def create
@@ -12,7 +12,7 @@ class FlashcardsController < ApplicationController
   end
 
   def index
-    render json: Flashcard.all, status: :ok
+    render json: @current_user.flashcards.all, status: :ok
   end
 
   def destroy
@@ -28,7 +28,7 @@ class FlashcardsController < ApplicationController
   private
 
   def flashcard_params
-    params.require(:flashcard).permit(:id, :tab, :front, :back, :note_book_id, :user_id)
+    params.permit(:id, :tab, :front, :back, :note_book_id, :user_id)
   end
 end
 

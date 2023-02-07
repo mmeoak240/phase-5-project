@@ -17,9 +17,9 @@ const Notes = () => {
 	const notebook = user.note_books.find(
 		(notebook) => notebook.id == notebookId
 	);
-	// const notes = useSelector((state) => state.notes.notes);
 
-	// console.log(user.note_books.find((notebook) => notebook.id == notebookId));
+	const uniqueTabs = [...new Set(notebook.notes.map((data) => data.tab))];
+	// const notes = useSelector((state) => state.notes.notes);
 
 	const [searchResults, setSearchResults] = useState("");
 	// use user to find selected notebook then use notebook.notes
@@ -88,18 +88,13 @@ const Notes = () => {
 				style={{ marginLeft: "1280px" }}
 			>
 				<option value="">Find by tab</option>
-				{notebook.notes.map((note) => (
-					<option value={note.tab}>{note.tab}</option>
+				{uniqueTabs.map((tab) => (
+					<option value={tab}>{tab}</option>
 				))}
 			</select>
 			<br></br>
 
-			<NavLink
-				to={`/notebooks/${notebookId}/flashcards`}
-				onClick={function () {}}
-			>
-				Flashcards
-			</NavLink>
+			<NavLink to={`/notebooks/${notebookId}/flashcards`}>Flashcards</NavLink>
 
 			<div class="book">
 				<div class="flip-book">
