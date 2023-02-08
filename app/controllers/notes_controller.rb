@@ -17,11 +17,22 @@ class NotesController < ApplicationController
 
   
   def show
-    note = Note.find_by(id:params[:id])
+    note = Note.find_by()
     if note
       render json: note, status: :ok
     else
         render json: {error: "Note not found"}
+    end
+  end
+
+  def update
+    note = @current_user.notes.find_by(id:params[:id])
+    if note
+      note.update(note_params)
+    render json: note, status: :ok
+    debugger
+    else
+      render json: {error: "Note not found"}
     end
   end
 

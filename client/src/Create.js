@@ -19,6 +19,8 @@ const Create = () => {
 	const user = useSelector((store) => store.users.user);
 	const formErrors = useSelector((state) => state.notes.error);
 
+	console.log(formErrors);
+
 	// useEffect(() => {
 	// 	dispatch(getNotes());
 	// }, [dispatch]);
@@ -82,7 +84,7 @@ const Create = () => {
 							onChange={(e) => setSubject(e.target.value)}
 							placeholder="Subject"
 						/>
-						{/* <label>Note Book Cover</label> */}
+
 						<input
 							type="text"
 							id="cover"
@@ -120,13 +122,15 @@ const Create = () => {
 					</form>
 				</div>
 			</div>
-			<div>
-				{formErrors ? (
-					formErrors.errors.map((error) => <h4>{error}</h4>)
-				) : (
-					<span></span>
-				)}
-			</div>
+			<ul>
+				<p>
+					{formErrors ? (
+						formErrors.errors.map((error) => <h4>{error}</h4>)
+					) : (
+						<span></span>
+					)}
+				</p>
+			</ul>
 		</div>
 	);
 };

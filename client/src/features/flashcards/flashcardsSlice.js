@@ -59,7 +59,11 @@ const flashcardsSlice = createSlice({
 			state.status = "loading";
 		},
 		[createFlashcard.fulfilled](state, action) {
-			state.flashcards.push(action.payload);
+			if (Object.keys(action.payload).includes("errors")) {
+				state.error = action.payload;
+			} else {
+				state.flashcards.push(action.payload);
+			}
 			state.status = "idle";
 		},
 		[getFlashcards.pending](state) {

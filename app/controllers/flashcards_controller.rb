@@ -1,9 +1,9 @@
 class FlashcardsController < ApplicationController
   # skip_before_action :authorize, only: :create 
-  # skip_before_action :authorize, only: :index    
+  skip_before_action :authorize, only: :index    
   
   def create
-    flashcard = Flashcard.create(flashcard_params)
+    flashcard = @current_user.flashcards.create(flashcard_params)
     if flashcard.valid?
       render json: flashcard, status: :created
     else
@@ -16,7 +16,7 @@ class FlashcardsController < ApplicationController
   end
 
   def destroy
-    flashcard = Flashcard.find_by(id:params[:id])
+    flashcard = @current_user.flashcards.find_by(id:params[:id])
     if flashcard
       flashcard.destroy
       head :no_content

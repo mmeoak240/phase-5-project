@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import NavBar from "./NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteNote } from "../src/features/notes/notesSlice";
-import { getFlashcards } from "./features/flashcards/flashcardsSlice";
 
 const Notes = () => {
 	const [page, setpage] = useState(0);
@@ -57,7 +56,6 @@ const Notes = () => {
 				Page {pageNumber} - {note.tab}
 			</h2>
 			<p style={{ color: "black" }}>{note.content}</p>
-
 			<button class="next-btn" onClick={nextPage}>
 				NEXT
 			</button>
@@ -71,6 +69,9 @@ const Notes = () => {
 			</button>
 			<button class="back-btn" onClick={previousPage}>
 				BACK
+			</button>
+			<button class="edit-note-btn">
+				<NavLink to={`/notes/${note.id}/edit`}>Edit Note</NavLink>
 			</button>
 		</div>
 	));
@@ -93,8 +94,11 @@ const Notes = () => {
 				))}
 			</select>
 			<br></br>
-
-			<NavLink to={`/notebooks/${notebookId}/flashcards`}>Flashcards</NavLink>
+			<button class="flashcard-btn">
+				{" "}
+				<NavLink to={`/notebooks/${notebookId}/flashcards`}>Flashcards</NavLink>
+			</button>
+			<br></br>
 
 			<div class="book">
 				<div class="flip-book">

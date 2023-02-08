@@ -30,8 +30,6 @@ const Account = () => {
 			};
 			dispatch(updateUser(updatedInfo));
 			resetInputs();
-			console.log("In handle Submit");
-			console.log(updatedInfo);
 		}
 	}
 

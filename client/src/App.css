@@ -184,21 +184,60 @@ input {
 	cursor: pointer;
 }
 
-.flashcard-flip-btn {
+.flashcard-next-btn {
 	position: absolute;
 	bottom: 13px;
-	right: 300px;
+	right: 17px;
+	cursor: pointer;
+	color: #000;
+}
+.flashcard-back-btn {
+	position: absolute;
+	bottom: 13px;
+	right: 630px;
+	cursor: pointer;
+	color: black;
+}
+.flashcard-delete-btn {
+	position: absolute;
+	bottom: 13px;
+	right: 410px;
 	cursor: pointer;
 	color: black;
 }
 
-.flashcard-delete-btn {
+.flashcard-flip-btn {
 	position: absolute;
 	bottom: 13px;
-	right: 535px;
+	right: 240px;
 	cursor: pointer;
 	color: black;
 }
+
+.flashcard-btn {
+	position: absolute;
+	bottom: 1240px;
+	right: 20px;
+	cursor: pointer;
+	color: black;
+}
+
+.edit-note-btn {
+	position: absolute;
+	bottom: 1210px;
+	right: 20px;
+	cursor: pointer;
+	color: black;
+}
+
+#flashcard {
+	width: 800px;
+	height: 500px;
+	text-align: center;
+	position: absolute;
+	right: 1050px;
+}
+
 #p1 {
 	z-index: 3;
 }

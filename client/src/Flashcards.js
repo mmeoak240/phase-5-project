@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteNote } from "../src/features/notes/notesSlice";
 import { getFlashcards } from "./features/flashcards/flashcardsSlice";
+import { deleteFlashcard } from "./features/flashcards/flashcardsSlice";
 
 const Flashcards = () => {
 	const [card, setCard] = useState(0);
@@ -13,7 +13,7 @@ const Flashcards = () => {
 	const user = useSelector((state) => state.users.user);
 	const flashcards = useSelector((state) => state.flashcards.flashcards);
 	const dispatch = useDispatch();
-
+	// const notebooks = useSelector((state) => state.notebooks.notebooks);
 	useEffect(() => {
 		dispatch(getFlashcards());
 	}, []);
@@ -49,11 +49,11 @@ const Flashcards = () => {
 		} else setCard(0);
 	}
 
-	function handleDeleteNote(id) {
-		dispatch(deleteNote(id));
+	function handleDeleteFlashcard(id) {
+		dispatch(deleteFlashcard(id));
 	}
 
-	const selectedNotebookFlashcards = flashcards.filter((flashcard) =>
+	const selectedNotebookFlashcards = notebook.flashcards.filter((flashcard) =>
 		flashcard.tab.includes(searchResults)
 	);
 
@@ -73,13 +73,13 @@ const Flashcards = () => {
 				</>
 			)}
 
-			<button class="next-btn" onClick={nextFlashcard}>
+			<button class="flashcard-next-btn" onClick={nextFlashcard}>
 				NEXT
 			</button>
 			<button
 				class="flashcard-delete-btn"
 				onClick={function () {
-					handleDeleteNote(flashcard.id);
+					handleDeleteFlashcard(flashcard.id);
 				}}
 			>
 				DELETE
@@ -92,7 +92,7 @@ const Flashcards = () => {
 			>
 				Flip
 			</button>
-			<button class="back-btn" onClick={previousFlashcard}>
+			<button class="flashcard-back-btn" onClick={previousFlashcard}>
 				BACK
 			</button>
 		</div>
@@ -108,7 +108,7 @@ const Flashcards = () => {
 				name="flashcards"
 				id="flashcards"
 				onChange={handleChange}
-				style={{ marginLeft: "1280px" }}
+				style={{ marginLeft: "1800px" }}
 			>
 				<option value="">Find by tab</option>
 				{uniqueTabs.map((tab) => (
@@ -118,7 +118,7 @@ const Flashcards = () => {
 			<br></br>
 
 			<div class="book">
-				<div class="flip-book">
+				<div class="flip-book" id="flashcard">
 					<p>{flashcardsArray[card]}</p>
 				</div>
 			</div>

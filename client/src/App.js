@@ -11,7 +11,9 @@ import Notes from "./Notes";
 import Flashcards from "./Flashcards";
 import Account from "./Account";
 import AddFlashcard from "./AddFlashcard";
+import EditNote from "./EditNote";
 import { getNotebooks } from "./features/notebooks/notebooksSlice";
+import { getNotes } from "./features/notes/notesSlice";
 import { getFlashcards } from "./features/flashcards/flashcardsSlice";
 
 import { userAdded } from "./features/users/usersSlice";
@@ -39,9 +41,9 @@ function App() {
 		dispatch(getNotebooks());
 	}, [dispatch]);
 
-	// useEffect(() => {
-	// 	dispatch(getNotes());
-	// }, []);
+	useEffect(() => {
+		dispatch(getNotes());
+	}, []);
 
 	return (
 		<>
@@ -53,6 +55,7 @@ function App() {
 						<Route path="/notes/new" element={<Create />} />
 						{/* change */}
 						<Route path="/notebooks/:notebook_id/notes" element={<Notes />} />
+						<Route path="/notes/:note_id/edit" element={<EditNote />} />
 						<Route
 							path="/notebooks/:notebook_id/flashcards"
 							element={<Flashcards />}

@@ -1,6 +1,5 @@
 class NoteBooksController < ApplicationController
 
-  before_action :authorize
   skip_before_action :authorize, only: :index 
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
@@ -21,7 +20,7 @@ end
   end
 
 def destroy
-  noteBook = NoteBook.find_by(id:params[:id])
+  noteBook = @current_user.note_books.find_by(id:params[:id])
   if noteBook
     noteBook.destroy
     head :no_content

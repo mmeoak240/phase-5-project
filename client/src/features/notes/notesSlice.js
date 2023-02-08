@@ -27,6 +27,21 @@ export const createNote = createAsyncThunk("notes/addNote", async (newNote) => {
 	return note;
 });
 
+export const updateNote = createAsyncThunk(
+	"notes/editNote",
+	async (updatedNote) => {
+		const res = await fetch(`/notes/${updatedNote.id}`, {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(updatedNote),
+		});
+		const note = await res.json();
+		return note;
+	}
+);
+
 export const deleteNote = createAsyncThunk("notes/deletenote", async (id) => {
 	const res = await fetch(`/notes/${id}`, {
 		method: "DELETE",
@@ -44,7 +59,11 @@ const notesSlice = createSlice({
 			state.status = "loading";
 		},
 		[createNote.fulfilled](state, action) {
-			state.notes.push(action.payload);
+			if (Object.keys(action.payload).includes("errors")) {
+				state.error = action.payload;
+			} else {
+				state.notes.push(action.payload);
+			}
 			state.status = "idle";
 		},
 		[getNotes.pending](state) {
@@ -52,6 +71,21 @@ const notesSlice = createSlice({
 		},
 		[getNotes.fulfilled](state, action) {
 			state.notes = action.payload;
+			state.status = "idle";
+		},
+		[updateNote.pending](state) {
+			state.status = "loading";
+		},
+		[updateNote.fulfilled](state, action) {
+			if (Object.keys(action.payload).includes("errors")) {
+				state.error = action.payload;
+			} else {
+				state.notes = state.notes.filter(
+					(note) => note.id !== action.payload.id
+				);
+				// debugger;
+				state.notes.push(action.payload);
+			}
 			state.status = "idle";
 		},
 		[deleteNote.pending](state) {

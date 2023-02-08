@@ -14,7 +14,7 @@ const AddFlashcard = () => {
 
 	const notebooks = useSelector((store) => store.notebooks.notebooks);
 	const user = useSelector((store) => store.users.user);
-	const formErrors = useSelector((state) => state.notes.error);
+	const formErrors = useSelector((state) => state.flashcards.error);
 
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);
@@ -67,7 +67,11 @@ const AddFlashcard = () => {
 							id="content"
 							value={front}
 							onChange={(e) => setFront(e.target.value)}
-							style={{ width: "1300px", height: "800px", fontSize: 20 }}
+							style={{
+								width: "1000px",
+								height: "600px",
+								fontSize: 40,
+							}}
 							placeholder="Front of flashcard"
 						/>
 						<br></br>
@@ -77,7 +81,11 @@ const AddFlashcard = () => {
 							id="content"
 							value={back}
 							onChange={(e) => setBack(e.target.value)}
-							style={{ width: "1300px", height: "800px", fontSize: 20 }}
+							style={{
+								width: "1000px",
+								height: "600px",
+								fontSize: 40,
+							}}
 							placeholder="Back of flashcard"
 						/>
 						<br></br>
@@ -87,13 +95,15 @@ const AddFlashcard = () => {
 					</form>
 				</div>
 			</div>
-			<div>
-				{formErrors ? (
-					formErrors.errors.map((error) => <h4>{error}</h4>)
-				) : (
-					<span></span>
-				)}
-			</div>
+			<ul>
+				<p>
+					{formErrors ? (
+						formErrors.errors.map((error) => <h4>{error}</h4>)
+					) : (
+						<span></span>
+					)}
+				</p>
+			</ul>
 		</div>
 	);
 };
