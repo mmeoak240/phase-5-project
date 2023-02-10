@@ -2,6 +2,8 @@
 
 ## Welcome!
 
+<img src="https://abaforlawstudents.com/wp-content/uploads/2019/11/study-group.jpg" alt="Study group">
+
 Welcome to AllStudy, your ultimate study buddy! With all study you can create notebooks for your various courses and take notes within these notebooks(obviously). You will be able to attach tabs to your notes for easy organize and find the notes you need. If you are one of those people who loves to use flashcards to ingrain information into your head, great casue you can make flashcards that have a front and back with a flip function(also may be tabbed so you can study only what you are working on).
 
 ## Purpose
@@ -10,6 +12,11 @@ The purpose of this application is to provide an all in one study tool for stude
 I have always struggled with taking and organizing my notes. I would have notes on google docs, in a note book, paper flashcards and notebooked browser pages. This approach works for some people but not everyone. I wanted to create a place to keep everything. Notebooks, flashcards, scheduleing and more, all the tools a student needs to succeed.
 
 ## Features
+
+- Creation of notebooks and notes within those notebooks.
+- Ability to edit notes.
+- Creation of flippable flashcards
+- All notes and flashcards can be tabbed to organize and study only what you need.
 
 ## Comming Features
 
