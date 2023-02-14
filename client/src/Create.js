@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createNote } from "../src/features/notes/notesSlice";
 import { getNotes } from "./features/notes/notesSlice";
@@ -19,12 +18,6 @@ const Create = () => {
 	const user = useSelector((store) => store.users.user);
 	const formErrors = useSelector((state) => state.notes.error);
 
-	console.log(formErrors);
-
-	// useEffect(() => {
-	// 	dispatch(getNotes());
-	// }, [dispatch]);
-
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);
 		console.log(event.target.value);
@@ -43,9 +36,7 @@ const Create = () => {
 			},
 		};
 		dispatch(createNote(newNoteNotebook));
-		dispatch(getNotes());
-		console.log("In Create handleSubmit");
-		console.log(newNoteNotebook);
+		// dispatch(getNotes());
 		setSubject("");
 		setCover("");
 		setContent("");

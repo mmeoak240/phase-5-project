@@ -18,11 +18,8 @@ const Notes = () => {
 	);
 
 	const uniqueTabs = [...new Set(notebook.notes.map((data) => data.tab))];
-	// const notes = useSelector((state) => state.notes.notes);
 
 	const [searchResults, setSearchResults] = useState("");
-	// use user to find selected notebook then use notebook.notes
-	// change url to note_books/:id/notes
 
 	const handleChange = (event) => {
 		setSearchResults(event.target.value);

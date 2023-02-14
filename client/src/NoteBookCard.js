@@ -10,7 +10,6 @@ const NoteBookCard = ({ notebook }) => {
 
 	function handleDeleteNotebook(id) {
 		dispatch(deleteNotebook(id));
-		dispatch(getNotebooks());
 	}
 	return (
 		<>

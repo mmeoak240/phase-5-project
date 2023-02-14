@@ -22,8 +22,6 @@ export const createNote = createAsyncThunk("notes/addNote", async (newNote) => {
 		body: JSON.stringify(newNote),
 	});
 	const note = await res.json();
-	console.log("in noteSlice POST");
-	console.log(note);
 	return note;
 });
 

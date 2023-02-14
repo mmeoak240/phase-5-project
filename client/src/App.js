@@ -33,13 +33,13 @@ function App() {
 		});
 	}, []);
 
-	// useEffect(() => {
-	// 	dispatch(getFlashcards());
-	// }, []);
+	useEffect(() => {
+		dispatch(getFlashcards());
+	}, []);
 
 	useEffect(() => {
 		dispatch(getNotebooks());
-	}, [dispatch]);
+	}, []);
 
 	useEffect(() => {
 		dispatch(getNotes());

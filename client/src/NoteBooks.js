@@ -9,14 +9,10 @@ import { getFlashcards } from "./features/flashcards/flashcardsSlice";
 const NoteBooks = () => {
 	const dispatch = useDispatch();
 	const notebooks = useSelector((state) => state.notebooks.notebooks);
+	// const notes = useSelector((state) => state.notes.notes);
 
-	// useEffect(() => {
-	// 	dispatch(getNotebooks());
-	// }, [dispatch]);
-
-	// useEffect(() => {
-	// 	dispatch(getFlashcards());
-	// }, [dispatch]);
+	// let testNotebooks = [...new Set(notes.map((note) => note.note_book))];
+	// console.log(testNotebooks);
 
 	return (
 		<>
