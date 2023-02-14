@@ -60,6 +60,7 @@ const notesSlice = createSlice({
 			if (Object.keys(action.payload).includes("errors")) {
 				state.error = action.payload;
 			} else {
+				// state.notes = getNotes();
 				state.notes.push(action.payload);
 			}
 			state.status = "idle";

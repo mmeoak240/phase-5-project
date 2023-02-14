@@ -1,15 +1,20 @@
-import { useState } from "react";
-import Notes from "./Notes";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteNotebook } from "./features/notebooks/notebooksSlice";
 import { getNotebooks } from "./features/notebooks/notebooksSlice";
+import { getNotes } from "./features/notes/notesSlice";
 
 const NoteBookCard = ({ notebook }) => {
 	const dispatch = useDispatch();
 
+	useEffect(() => {
+		dispatch(getNotes());
+	}, []);
+
 	function handleDeleteNotebook(id) {
 		dispatch(deleteNotebook(id));
+		dispatch(getNotebooks());
 	}
 	return (
 		<>

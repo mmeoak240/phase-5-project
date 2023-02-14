@@ -14,9 +14,9 @@ const Flashcards = () => {
 	const flashcards = useSelector((state) => state.flashcards.flashcards);
 	const dispatch = useDispatch();
 	// const notebooks = useSelector((state) => state.notebooks.notebooks);
-	useEffect(() => {
-		dispatch(getFlashcards());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getFlashcards());
+	// }, []);
 
 	const notebook = user.note_books.find(
 		(notebook) => notebook.id == notebookId
@@ -57,7 +57,7 @@ const Flashcards = () => {
 		flashcard.tab.includes(searchResults)
 	);
 
-	const uniqueTabs = [...new Set(flashcards.map((data) => data.tab))];
+	const uniqueTabs = [...new Set(notebook.flashcards.map((data) => data.tab))];
 
 	const flashcardsArray = selectedNotebookFlashcards.map((flashcard) => (
 		<div class="front">

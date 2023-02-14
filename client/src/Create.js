@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createNote } from "../src/features/notes/notesSlice";
-import { getNotes } from "./features/notes/notesSlice";
+// import { getNotes } from "./features/notes/notesSlice";
 import "./Dropdown.css";
 import NavBar from "./NavBar";
 

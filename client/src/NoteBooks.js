@@ -14,6 +14,10 @@ const NoteBooks = () => {
 	// let testNotebooks = [...new Set(notes.map((note) => note.note_book))];
 	// console.log(testNotebooks);
 
+	useEffect(() => {
+		dispatch(getNotebooks());
+	}, []);
+
 	return (
 		<>
 			<NavBar />

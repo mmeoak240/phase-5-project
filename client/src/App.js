@@ -33,17 +33,17 @@ function App() {
 		});
 	}, []);
 
-	useEffect(() => {
-		dispatch(getFlashcards());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getFlashcards());
+	// }, []);
 
-	useEffect(() => {
-		dispatch(getNotebooks());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getNotebooks());
+	// }, []);
 
-	useEffect(() => {
-		dispatch(getNotes());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getNotes());
+	// }, []);
 
 	return (
 		<>

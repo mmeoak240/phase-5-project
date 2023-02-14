@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   wrap_parameters format: []
 
-  skip_before_action :authorize, only: :create 
+  skip_before_action :authorize, only: :create
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     if user.valid?
       session[:user_id] = user.id
       render json: user, status: :created
-   
+    else
+      render json: { errors: ["Invalid username or password"] }, status: :unauthorized
     end
   end
 

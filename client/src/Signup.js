@@ -8,7 +8,6 @@ function SignUp({ onLogin }) {
 	const [password, setPassword] = useState("");
 	const [passwordConfirmation, setPasswordConfirmation] = useState("");
 	const [major, setMajor] = useState("");
-	const [errors, setErrors] = useState([]);
 
 	const dispatch = useDispatch();
 	const signupErrors = useSelector((state) => state.users.error);
@@ -97,15 +96,26 @@ function SignUp({ onLogin }) {
 					onChange={(e) => setMajor(e.target.value)}
 				/>
 				<button type="submit">Signup</button>
-				<NavLink to="/">Login</NavLink>
+				<NavLink to="/">
+					<button>Login</button>
+				</NavLink>
+				<ul>
+					<p>
+						{signupErrors ? (
+							signupErrors.errors.map((error) => <h4>{error}</h4>)
+						) : (
+							<span></span>
+						)}
+					</p>
+				</ul>
 			</form>
-			<div>
+			{/* <div>
 				{signupErrors ? (
 					signupErrors.errors.map((error) => <h4>{error}</h4>)
 				) : (
 					<span></span>
 				)}
-			</div>
+			</div> */}
 		</div>
 	);
 }

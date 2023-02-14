@@ -63,9 +63,13 @@ const notebooksSlice = createSlice({
 			state.status = "loading";
 		},
 		[deleteNotebook.fulfilled](state, action) {
-			state.notebooks = state.notebooks.filter(
-				(notebook) => notebook.id !== action.payload
-			);
+			if (Object.keys(action.payload).includes("errors")) {
+				state.error = action.payload;
+			} else {
+				state.notebooks = state.notebooks.filter(
+					(notebook) => notebook.id !== action.payload
+				);
+			}
 			state.status = "idle";
 		},
 	},

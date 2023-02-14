@@ -30,7 +30,6 @@ class NotesController < ApplicationController
     if note
       note.update(note_params)
     render json: note, status: :ok
-    debugger
     else
       render json: {error: "Note not found"}
     end
