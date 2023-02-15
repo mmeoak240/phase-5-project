@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateNote } from "./features/notes/notesSlice";
+import { updateNote } from "./features/notebooks/notebooksSlice";
 import NavBar from "./NavBar";
 
 const EditNote = () => {

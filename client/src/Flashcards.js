@@ -13,13 +13,17 @@ const Flashcards = () => {
 	const user = useSelector((state) => state.users.user);
 	const flashcards = useSelector((state) => state.flashcards.flashcards);
 	const dispatch = useDispatch();
-	// const notebooks = useSelector((state) => state.notebooks.notebooks);
+
 	// useEffect(() => {
 	// 	dispatch(getFlashcards());
 	// }, []);
 
 	const notebook = user.note_books.find(
 		(notebook) => notebook.id == notebookId
+	);
+
+	const notebookFlashcards = flashcards.filter(
+		(flashcard) => flashcard.note_book_id == notebookId
 	);
 
 	const [searchResults, setSearchResults] = useState("");
@@ -53,11 +57,11 @@ const Flashcards = () => {
 		dispatch(deleteFlashcard(id));
 	}
 
-	const selectedNotebookFlashcards = notebook.flashcards.filter((flashcard) =>
+	const selectedNotebookFlashcards = notebookFlashcards.filter((flashcard) =>
 		flashcard.tab.includes(searchResults)
 	);
 
-	const uniqueTabs = [...new Set(notebook.flashcards.map((data) => data.tab))];
+	const uniqueTabs = [...new Set(notebookFlashcards.map((data) => data.tab))];
 
 	const flashcardsArray = selectedNotebookFlashcards.map((flashcard) => (
 		<div class="front">
@@ -100,28 +104,34 @@ const Flashcards = () => {
 	return (
 		<>
 			<NavBar />
-			<h1 className="noteTitle">
-				{notebook.subject} : {searchResults}
-			</h1>
-			<br></br>
-			<select
-				name="flashcards"
-				id="flashcards"
-				onChange={handleChange}
-				style={{ marginLeft: "1800px" }}
-			>
-				<option value="">Find by tab</option>
-				{uniqueTabs.map((tab) => (
-					<option value={tab}>{tab}</option>
-				))}
-			</select>
-			<br></br>
+			{notebookFlashcards.length == 0 ? (
+				<h1>No Flashcards Added</h1>
+			) : (
+				<>
+					<h1 className="noteTitle">
+						{notebook.subject} : {searchResults}
+					</h1>
+					<br></br>
+					<select
+						name="flashcards"
+						id="flashcards"
+						onChange={handleChange}
+						style={{ marginLeft: "1800px" }}
+					>
+						<option value="">Find by tab</option>
+						{uniqueTabs.map((tab) => (
+							<option value={tab}>{tab}</option>
+						))}
+					</select>
+					<br></br>
 
-			<div class="book">
-				<div class="flip-book" id="flashcard">
-					<p>{flashcardsArray[card]}</p>
-				</div>
-			</div>
+					<div class="book">
+						<div class="flip-book" id="flashcard">
+							<p>{flashcardsArray[card]}</p>
+						</div>
+					</div>
+				</>
+			)}
 		</>
 	);
 };

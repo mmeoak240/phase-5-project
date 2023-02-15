@@ -8,13 +8,12 @@ import { getNotes } from "./features/notes/notesSlice";
 const NoteBookCard = ({ notebook }) => {
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(getNotes());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getNotes());
+	// }, []);
 
 	function handleDeleteNotebook(id) {
-		dispatch(deleteNotebook(id));
-		dispatch(getNotebooks());
+		dispatch(deleteNotebook(id)).then(() => dispatch(getNotebooks()));
 	}
 	return (
 		<>

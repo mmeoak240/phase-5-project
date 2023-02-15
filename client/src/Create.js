@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createNote } from "../src/features/notes/notesSlice";
-// import { getNotes } from "./features/notes/notesSlice";
+import { createNote } from "../src/features/notebooks/notebooksSlice";
 import "./Dropdown.css";
 import NavBar from "./NavBar";
 
@@ -20,12 +19,11 @@ const Create = () => {
 
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);
-		console.log(event.target.value);
 	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		const newNoteNotebook = {
+		const newNote = {
 			tab,
 			content,
 			user_id: user.id,
@@ -35,8 +33,7 @@ const Create = () => {
 				cover: cover,
 			},
 		};
-		dispatch(createNote(newNoteNotebook));
-		// dispatch(getNotes());
+		dispatch(createNote(newNote));
 		setSubject("");
 		setCover("");
 		setContent("");
@@ -95,7 +92,6 @@ const Create = () => {
 							onChange={(e) => setTab(e.target.value)}
 							placeholder="Tab"
 						/>
-						{/* <label>Note Page</label> */}
 
 						<textarea
 							maxlength="5000"

@@ -16,7 +16,7 @@ const NoteBooks = () => {
 
 	useEffect(() => {
 		dispatch(getNotebooks());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>

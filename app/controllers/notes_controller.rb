@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
 
-  # skip_before_action :authorize, only: :index   
+  skip_before_action :authorize, only: :destroy
+  skip_before_action :authorize, only: :index
   
   def create
     note = Note.create(note_params)

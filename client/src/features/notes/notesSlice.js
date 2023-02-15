@@ -51,7 +51,12 @@ export const deleteNote = createAsyncThunk("notes/deletenote", async (id) => {
 const notesSlice = createSlice({
 	name: "notes",
 	initialState,
-	reducers: {},
+	reducers: {
+		noteRemoved(state, action) {
+			state.notes = state.notes.filter((note) => note.id !== action.payload);
+			state.status = "idle";
+		},
+	},
 	extraReducers: {
 		[createNote.pending](state) {
 			state.status = "loading";
@@ -92,6 +97,7 @@ const notesSlice = createSlice({
 		},
 		[deleteNote.fulfilled](state, action) {
 			state.notes = state.notes.filter((note) => note.id !== action.payload);
+			debugger;
 			state.status = "idle";
 		},
 	},

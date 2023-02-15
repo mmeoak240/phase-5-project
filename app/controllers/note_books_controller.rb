@@ -6,9 +6,10 @@ class NoteBooksController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   def create
-    notebook = @current_user.noteBooks.create(notebook_params)
+    notebook = @current_user.note_books.create(notebook_params)
     if notebook.valid?
       render json: notebook, status: :created
+      byebug
     else
       render json: {errors: notebook.errors.full_messages}, status: :unprocessable_entity
     end

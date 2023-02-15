@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import NavBar from "./NavBar";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteNote } from "../src/features/notes/notesSlice";
+import { deleteNote } from "../src/features/notebooks/notebooksSlice";
+import { getNotes } from "../src/features/notebooks/notebooksSlice";
 
 const Notes = () => {
 	const [page, setpage] = useState(0);
@@ -11,13 +12,16 @@ const Notes = () => {
 	const params = useParams();
 	const notebookId = params.notebook_id;
 	const user = useSelector((state) => state.users.user);
+	const notes = useSelector((state) => state.notebooks.notes);
 	const dispatch = useDispatch();
 
 	const notebook = user.note_books.find(
 		(notebook) => notebook.id == notebookId
 	);
 
-	const uniqueTabs = [...new Set(notebook.notes.map((data) => data.tab))];
+	const notebookNotes = notes.filter((note) => note.note_book_id == notebookId);
+	const uniqueTabs = [...new Set(notebookNotes.map((data) => data.tab))];
+	// const uniqueTabs = [...new Set(notebook.notes.map((data) => data.tab))];
 
 	const [searchResults, setSearchResults] = useState("");
 
@@ -40,10 +44,10 @@ const Notes = () => {
 	}
 
 	function handleDeleteNote(id) {
-		dispatch(deleteNote(id));
+		dispatch(deleteNote(id)).then(() => dispatch(getNotes()));
 	}
 
-	const selectedNotebookPages = notebook.notes.filter((note) =>
+	const selectedNotebookPages = notebookNotes.filter((note) =>
 		note.tab.includes(searchResults)
 	);
 
