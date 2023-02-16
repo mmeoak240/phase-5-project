@@ -4,7 +4,7 @@
 
 <img src="https://abaforlawstudents.com/wp-content/uploads/2019/11/study-group.jpg" alt="Study group">
 
-Welcome to AllStudy, your ultimate study buddy! With all study you can create notebooks for your various courses and take notes within these notebooks(obviously). You will be able to attach tabs to your notes for easy organization and find the notes you need faster. Are you one of those people who loves to use flashcards to ingrain information into your head? Great! You can do that too by making flashcards that have a front and back with a flip function(also may be tabbed so you can study only what you need).
+Welcome to AllStudy, your ultimate study buddy! With AllStudy you can create notebooks for your various courses and take notes within these notebooks(obviously). You will be able to attach tabs to your notes for easy organization and hekp in finding the notes you need faster. Are you one of those people who loves to use flashcards to ingrain information into your head? Great! You can do that too by making flashcards that have a front and back with a flip function(also may be tabbed so you can study only what you need).
 
 ## Purpose
 
@@ -24,7 +24,20 @@ Features that will be added with future updates will be:
 
 - Access to a dictionary and thesaurus to make sure you understand everything your reading while studying.
 - Access to google calenders to keep track of classes and deadlines.
+- A links page to save an organize websites you may be using.
 - The ability for students to share notes.
+
+## Install
+
+This application was created using Ruby 2.7.4 and Rails 6.1.3.
+To check your versions type the following into you console
+
+````
+ruby -v
+```
+```
+rails -v
+```
 
 <!-- This project is scaffolded so that you can build a React frontend and Rails
 backend together, and easily deploy them to Render.
@@ -57,3 +70,4 @@ $ git clone git@github.com:learn-co-curriculum/project-template-react-rails-api.
 $ cd your-project-name
 $ git remote rm origin
 ``` -->
+````
