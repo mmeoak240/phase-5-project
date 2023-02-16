@@ -40,9 +40,16 @@ ruby -v
 rails -v
 ```
 
-Clone Repository
+Clone Repository  
 In console:
 
 ```
 git clone https://github.com/mmeoak240/phase-5-project
+```
+
+Install dependencies
+
+```
+gem install bundler
+bundle install
 ```
