@@ -73,6 +73,8 @@ The navigation bar in top right corner has following options:
 -Home (http://localhost:4000)
 Returns user to the home page
 
+---
+
 -Notebooks  
  Brings user to their collection of notebooks(http://localhost:4000/notebooks).  
  These notebooks can be clicked to take the user to the notes they've created within the selected notebook(http://localhost:4000/:id/notes)  
@@ -81,15 +83,23 @@ Returns user to the home page
  Notebook attributes are Subject and Cover.  
  A note may not be created unless an already existing notebook is selected or the new notebook fields are filled out.
 
+---
+
 -Create (http://localhost:4000/notes/new)
 Takes user to a form where they may add a note to an already  
  existing notebook or create a new notebook.
 
+---
+
 -Add Flashcard (http://localhost:4000/flashcards/new)
 Takes user to a form where they may create a new flashcard and add it to an already existing notebook. Flashcard attributes are Tab, Front and Back.
 
+---
+
 -Account (http://localhost:4000/users/1/edit)
 Allows user to view and edit their account information.
+
+---
 
 -Logout
 Logs the user out.
