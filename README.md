@@ -32,11 +32,17 @@ Features that will be added with future updates will be:
 This application was created using Ruby 2.7.4 and Rails 6.1.3.
 To check your versions type the following into you console
 
-````
+```
 ruby -v
 ```
+
 ```
 rails -v
 ```
 
-````
+Clone Repository
+In console:
+
+```
+git clone https://github.com/mmeoak240/phase-5-project
+```
