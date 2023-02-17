@@ -107,18 +107,33 @@ Logs the user out.
 
 ## Visuals
 
+Home page
+
 ## <img src="/client/src/READmeImages/ASHome.png" alt="Notebooks">
+
+Notebook collection
 
 ## <img src="/client/src/READmeImages/ASNotebooks.png" alt="Notebooks">
 
+Notes in notebooks
+
 ## <img src="/client/src/READmeImages/ASNotes.png" alt="Notebooks">
+
+Edit note form
 
 ## <img src="/client/src/READmeImages/ASEditNote.png" alt="Notebooks">
 
+Flashcard
+
 ## <img src="/client/src/READmeImages/ASFlashcards.png" alt="Notebooks">
+
+Notebook and note creation form
 
 ## <img src="/client/src/READmeImages/ASCreate.png" alt="Notebooks">
 
+Flashcard creation form
+
 ## <img src="/client/src/READmeImages/ASMakeFlashcard.png" alt="Notebooks">
 
+Account information and edit
 <img src="/client/src/READmeImages/ASAccount.png" alt="Notebooks">
