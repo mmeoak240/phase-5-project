@@ -2,8 +2,7 @@
 
 ## Welcome!
 
-<img src="https://abaforlawstudents.com/wp-content/uploads/2019/11/study-group.jpg" alt="Study group">  
-https://abaforlawstudents.com/wp-content/uploads/2019/11/study-group.jpg
+<img src="https://abaforlawstudents.com/wp-content/uploads/2019/11/study-group.jpg" alt="Study group">
 
 Welcome to AllStudy, your ultimate study buddy! With AllStudy you can create notebooks for your various courses and take notes within these notebooks(obviously). You will be able to attach tabs to your notes for easy organization and hekp in finding the notes you need faster. Are you one of those people who loves to use flashcards to ingrain information into your head? Great! You can do that too by making flashcards that have a front and back with a flip function(also may be tabbed so you can study only what you need).
 
@@ -138,3 +137,7 @@ Flashcard creation form
 
 Account information and edit
 <img src="/client/src/READmeImages/ASAccount.png" alt="Notebooks">
+
+---
+
+Image used: https://abaforlawstudents.com/wp-content/uploads/2019/11/study-group.jpg
