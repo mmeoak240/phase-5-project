@@ -107,4 +107,18 @@ Logs the user out.
 
 ## Visuals
 
-<img src="/client/src/READmeImages/Screenshot (19).png" alt="Home page">
+## <img src="/client/src/READmeImages/ASHome.png" alt="Notebooks">
+
+## <img src="/client/src/READmeImages/ASNotebooks.png" alt="Notebooks">
+
+## <img src="/client/src/READmeImages/ASNotes.png" alt="Notebooks">
+
+## <img src="/client/src/READmeImages/ASEditNote.png" alt="Notebooks">
+
+## <img src="/client/src/READmeImages/ASFlashcards.png" alt="Notebooks">
+
+## <img src="/client/src/READmeImages/ASCreate.png" alt="Notebooks">
+
+## <img src="/client/src/READmeImages/ASMakeFlashcard.png" alt="Notebooks">
+
+<img src="/client/src/READmeImages/ASAccount.png" alt="Notebooks">
