@@ -107,4 +107,4 @@ Logs the user out.
 
 ## Visuals
 
-<img src="/phase-5/phase-5-project/client/src/READmeImages/Screenshot (19).png" alt="Home page">
+<img src="/client/src/READmeImages/Screenshot (19).png" alt="Home page">
