@@ -107,4 +107,4 @@ Logs the user out.
 
 ## Visuals
 
-<img src="/home/mmeoak240/Development/code/phase-5/phase-5-project/client/src/READmeImages/Screenshot (19).png" alt="Alt text" title="Optional title">
+<img src="/mmeoak240/Development/code/phase-5/phase-5-project/client/src/READmeImages/Screenshot (19).png" alt="Home page">
