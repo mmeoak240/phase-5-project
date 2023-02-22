@@ -8,41 +8,30 @@ function SignUp({ onLogin }) {
 	const [password, setPassword] = useState("");
 	const [passwordConfirmation, setPasswordConfirmation] = useState("");
 	const [major, setMajor] = useState("");
+	const [passwordError, setPasswordError] = useState("");
 
 	const dispatch = useDispatch();
 	const signupErrors = useSelector((state) => state.users.error);
 
 	function onSubmit(e) {
 		e.preventDefault();
-		const user = {
-			username,
-			password,
-			password_confirmation: passwordConfirmation,
-			major,
-		};
+		if (password !== passwordConfirmation) {
+			setPasswordError("Passwords do not match!");
+		} else {
+			const user = {
+				username,
+				password,
+				password_confirmation: passwordConfirmation,
+				major,
+			};
 
-		dispatch(signup(user));
+			dispatch(signup(user));
 
-		setUsername("");
-		setPassword("");
-		setPasswordConfirmation("");
-		setMajor("");
-
-		// fetch("/signup", {
-		// 	method: "POST",
-		// 	headers: { "Content-Type": "application/json" },
-		// 	body: JSON.stringify(client),
-		// }).then((r) => {
-		// 	if (r.ok) {
-		// 		r.json().then((user) => onLogin(user));
-		// 	} else {
-		// 		r.json().then((error) => setErrors(error.errors));
-		// 	}
-		// 	setUsername("");
-		// 	setPassword("");
-		// 	setPasswordConfirmation("");
-		// 	setMajor("");
-		// });
+			setUsername("");
+			setPassword("");
+			setPasswordConfirmation("");
+			setMajor("");
+		}
 	}
 
 	return (
@@ -84,6 +73,7 @@ function SignUp({ onLogin }) {
 					value={passwordConfirmation}
 					onChange={(e) => setPasswordConfirmation(e.target.value)}
 				/>
+				<span>{passwordError ? { passwordError } : null}</span>
 				<label htmlFor="goals" class="label">
 					Major
 				</label>
@@ -109,13 +99,6 @@ function SignUp({ onLogin }) {
 					</p>
 				</ul>
 			</form>
-			{/* <div>
-				{signupErrors ? (
-					signupErrors.errors.map((error) => <h4>{error}</h4>)
-				) : (
-					<span></span>
-				)}
-			</div> */}
 		</div>
 	);
 }

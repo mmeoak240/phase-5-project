@@ -15,6 +15,10 @@ const Notes = () => {
 	const notes = useSelector((state) => state.notebooks.notes);
 	const dispatch = useDispatch();
 
+	useEffect(() => {
+		dispatch(getNotes());
+	}, []);
+
 	const notebook = user.note_books.find(
 		(notebook) => notebook.id == notebookId
 	);

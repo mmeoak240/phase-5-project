@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const initialState = {
+	user: null,
+	error: null,
+	status: "idle",
+};
+
 export const login = createAsyncThunk("users/login", async (userInfo) => {
 	const res = await fetch("/login", {
 		method: "POST",
@@ -44,12 +50,6 @@ export const updateUser = createAsyncThunk(
 		return user;
 	}
 );
-
-const initialState = {
-	user: null,
-	error: null,
-	status: "idle",
-};
 
 const usersSlice = createSlice({
 	name: "users",

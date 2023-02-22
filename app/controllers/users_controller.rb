@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   wrap_parameters format: []
 
   skip_before_action :authorize, only: :create
+  skip_before_action :authorize, only: :update
+  skip_before_action :authorize, only: :destroy
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found

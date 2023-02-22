@@ -14,6 +14,7 @@ const Account = () => {
 	const [passwordError, setPasswordError] = useState("");
 
 	const dispatch = useDispatch();
+	console.log(password);
 
 	function handleSubmit(event) {
 		event.preventDefault();

@@ -37,9 +37,9 @@ function App() {
 		dispatch(getFlashcards());
 	}, []);
 
-	// useEffect(() => {
-	// 	dispatch(getNotebooks());
-	// }, []);
+	useEffect(() => {
+		dispatch(getNotebooks());
+	}, []);
 
 	useEffect(() => {
 		dispatch(getNotes());
