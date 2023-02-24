@@ -13,9 +13,14 @@ const Create = () => {
 
 	const dispatch = useDispatch();
 
-	const notebooks = useSelector((store) => store.notebooks.notebooks);
 	const user = useSelector((store) => store.users.user);
-	const formErrors = useSelector((state) => state.notes.error);
+	const formErrors = useSelector((store) => store.notes.error);
+
+	const notebooks = user.note_books;
+
+	useEffect(() => {
+		console.log("Hello");
+	}, [notebooks]);
 
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);

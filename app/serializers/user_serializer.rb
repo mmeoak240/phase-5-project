@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest, :major
+  attributes :id, :username, :major
 
   has_many :notes
   has_many :flashcards

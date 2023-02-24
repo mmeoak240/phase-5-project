@@ -6,14 +6,14 @@ import { getNotebooks } from "./features/notebooks/notebooksSlice";
 
 const NoteBooks = () => {
 	const dispatch = useDispatch();
-	const notebooks = useSelector((state) => state.notebooks.notebooks);
+	const user = useSelector((store) => store.users.user);
+	const notes = useSelector((store) => store.notebooks.notes);
 
-	// let testNotebooks = [...new Set(notes.map((note) => note.note_book))];
-	// console.log(testNotebooks);
+	const notebooks = user.note_books;
 
 	useEffect(() => {
-		dispatch(getNotebooks());
-	}, [dispatch]);
+		console.log("Hello");
+	}, []);
 
 	return (
 		<>

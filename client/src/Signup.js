@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "./features/users/usersSlice";
 
@@ -10,6 +10,7 @@ function SignUp({ onLogin }) {
 	const [major, setMajor] = useState("");
 	const [passwordError, setPasswordError] = useState("");
 
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const signupErrors = useSelector((state) => state.users.error);
 
@@ -26,6 +27,7 @@ function SignUp({ onLogin }) {
 			};
 
 			dispatch(signup(user));
+			navigate("/", { replace: true });
 
 			setUsername("");
 			setPassword("");

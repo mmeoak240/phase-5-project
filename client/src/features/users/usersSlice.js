@@ -68,6 +68,7 @@ const usersSlice = createSlice({
 				state.error = action.payload;
 			} else {
 				state.user = action.payload;
+				state.error = null;
 			}
 			state.status = "idle";
 		},
@@ -89,6 +90,7 @@ const usersSlice = createSlice({
 			} else {
 				state.user = action.payload;
 				state.status = "idle";
+				state.error = null;
 			}
 		},
 		[updateUser.pending](state) {
@@ -99,6 +101,7 @@ const usersSlice = createSlice({
 				state.error = action.payload;
 			} else {
 				state.user = action.payload;
+				state.error = null;
 			}
 			state.status = "idle";
 		},

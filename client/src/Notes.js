@@ -31,6 +31,7 @@ const Notes = () => {
 
 	const handleChange = (event) => {
 		setSearchResults(event.target.value);
+		setpage(0);
 	};
 
 	function nextPage() {

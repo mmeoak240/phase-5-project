@@ -1,6 +1,7 @@
 class NoteBooksController < ApplicationController
 
   skip_before_action :authorize, only: :index 
+  skip_before_action :authorize, only: :destroy 
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
@@ -17,7 +18,8 @@ end
 
   def index
     # user = User.find_by(id: session[:user_id])
-    render json:  @current_user.note_books, status: :ok
+    # render json:  @current_user.note_books, status: :ok
+    render json: NoteBook.all
   end
 
 def destroy

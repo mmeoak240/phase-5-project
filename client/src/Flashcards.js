@@ -11,7 +11,7 @@ const Flashcards = () => {
 	const params = useParams();
 	const notebookId = params.notebook_id;
 	const user = useSelector((state) => state.users.user);
-	const flashcards = useSelector((state) => state.flashcards.flashcards);
+	// const flashcards = useSelector((state) => state.flashcards.flashcards);
 	const dispatch = useDispatch();
 
 	// useEffect(() => {
@@ -22,13 +22,16 @@ const Flashcards = () => {
 		(notebook) => notebook.id == notebookId
 	);
 
-	const notebookFlashcards = flashcards.filter(
-		(flashcard) => flashcard.note_book_id == notebookId
-	);
+	// const notebookFlashcards = flashcards.filter(
+	// 	(flashcard) => flashcard.note_book_id == notebookId
+	// );
+
+	const notebookFlashcards = notebook.flashcards;
 
 	const [searchResults, setSearchResults] = useState("");
 	const handleChange = (event) => {
 		setSearchResults(event.target.value);
+		setCard(0);
 	};
 
 	function flipCard() {
