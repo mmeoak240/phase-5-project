@@ -12,6 +12,7 @@ export const getNotebooks = createAsyncThunk(
 	async () => {
 		const r = await fetch("/note_books");
 		const noteBooks = await r.json();
+
 		return noteBooks;
 	}
 );
@@ -27,7 +28,7 @@ export const createNotebook = createAsyncThunk(
 			body: JSON.stringify(newNotebook),
 		});
 		const notebook = await res.json();
-		// debugger;
+
 		return notebook;
 	}
 );
@@ -38,6 +39,7 @@ export const getNotebook = createAsyncThunk(
 		const r = await fetch("/note_books/:id");
 		const noteBook = await r.json();
 		console.log(noteBook);
+
 		return noteBook;
 	}
 );
@@ -69,6 +71,7 @@ export const createNote = createAsyncThunk("notes/addNote", async (newNote) => {
 		body: JSON.stringify(newNote),
 	});
 	const note = await res.json();
+
 	return note;
 });
 
@@ -105,6 +108,7 @@ const notebooksSlice = createSlice({
 		},
 		[getNotebooks.fulfilled](state, action) {
 			state.notebooks = action.payload;
+
 			state.status = "idle";
 		},
 		[createNotebook.pending](state) {
@@ -137,6 +141,7 @@ const notebooksSlice = createSlice({
 			state.status = "loading";
 		},
 		[createNote.fulfilled](state, action) {
+			debugger;
 			if (Object.keys(action.payload).includes("errors")) {
 				state.error = action.payload;
 			} else {

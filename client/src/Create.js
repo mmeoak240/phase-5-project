@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createNote } from "../src/features/notebooks/notebooksSlice";
+import { createNotebook } from "../src/features/notebooks/notebooksSlice";
 import "./Dropdown.css";
 import NavBar from "./NavBar";
 
@@ -38,7 +39,18 @@ const Create = () => {
 				cover: cover,
 			},
 		};
-		dispatch(createNote(newNote));
+		const newNotebook = {
+			subject: subject,
+			cover: cover,
+		};
+		if (subject !== null && cover !== null) {
+			dispatch(createNote(newNote));
+			dispatch(createNotebook(newNotebook));
+		} else {
+			dispatch(createNote(newNote));
+		}
+
+		// if notebook attributes dispatch else dont
 		setSubject("");
 		setCover("");
 		setContent("");

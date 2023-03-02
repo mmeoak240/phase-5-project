@@ -8,12 +8,13 @@ const NoteBooks = () => {
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.users.user);
 	const notes = useSelector((store) => store.notebooks.notes);
+	// const notebooks = useSelector((store) => store.notebooks.notebooks);
 
 	const notebooks = user.note_books;
 
-	useEffect(() => {
-		console.log("Hello");
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getNotebooks());
+	// }, []);
 
 	return (
 		<>
