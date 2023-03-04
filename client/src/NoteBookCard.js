@@ -7,7 +7,7 @@ const NoteBookCard = ({ notebook }) => {
 	const dispatch = useDispatch();
 
 	function handleDeleteNotebook(id) {
-		dispatch(deleteNotebook(id)).then(() => dispatch(getNotebooks()));
+		dispatch(deleteNotebook(id));
 	}
 	return (
 		<>
@@ -16,14 +16,14 @@ const NoteBookCard = ({ notebook }) => {
 				<img src={notebook.cover} alt="Notebook cover" class="noteBookSize" />
 			</NavLink>
 			<br></br>
-			<button
+			{/* <button
 				class="notebook-dlt-btn"
 				onClick={function () {
 					handleDeleteNotebook(notebook.id);
 				}}
 			>
 				DELETE
-			</button>
+			</button> */}
 		</>
 	);
 };

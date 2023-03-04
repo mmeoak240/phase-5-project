@@ -118,7 +118,6 @@ const notebooksSlice = createSlice({
 			if (Object.keys(action.payload).includes("errors")) {
 				state.error = action.payload;
 			} else {
-				// state.notes = getNotes();
 				state.notebooks.push(action.payload);
 			}
 			state.status = "idle";
@@ -141,12 +140,23 @@ const notebooksSlice = createSlice({
 			state.status = "loading";
 		},
 		[createNote.fulfilled](state, action) {
-			debugger;
+			const titles = state.notebooks.map((book) => book.subject);
+
 			if (Object.keys(action.payload).includes("errors")) {
 				state.error = action.payload;
+			} else if (titles.includes(action.payload.note_book.subject)) {
+				state.notes.push(action.payload);
 			} else {
 				state.notes.push(action.payload);
+				state.notebooks.push(action.payload.note_book);
 			}
+
+			// if (Object.keys(action.payload).includes("errors")) {
+			// 	state.error = action.payload;
+			// } else {
+			// 	state.notes.push(action.payload);
+			// 	state.notebooks.push(action.payload.note_book);
+			// }
 			state.status = "idle";
 		},
 		[getNotes.pending](state) {

@@ -11,13 +11,14 @@ const Create = () => {
 	const [content, setContent] = useState("");
 	const [tab, setTab] = useState("");
 	const [notebookId, setNotebookId] = useState(null);
+	const notebooks = useSelector((store) => store.notebooks.notebooks);
 
 	const dispatch = useDispatch();
 
 	const user = useSelector((store) => store.users.user);
 	const formErrors = useSelector((store) => store.notes.error);
 
-	const notebooks = user.note_books;
+	// const notebooks = user.note_books;
 
 	useEffect(() => {
 		console.log("Hello");
@@ -39,16 +40,8 @@ const Create = () => {
 				cover: cover,
 			},
 		};
-		const newNotebook = {
-			subject: subject,
-			cover: cover,
-		};
-		if (subject !== null && cover !== null) {
-			dispatch(createNote(newNote));
-			dispatch(createNotebook(newNotebook));
-		} else {
-			dispatch(createNote(newNote));
-		}
+
+		dispatch(createNote(newNote));
 
 		// if notebook attributes dispatch else dont
 		setSubject("");

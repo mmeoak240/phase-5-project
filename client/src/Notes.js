@@ -13,19 +13,17 @@ const Notes = () => {
 	const notebookId = params.notebook_id;
 	const user = useSelector((state) => state.users.user);
 	const notes = useSelector((state) => state.notebooks.notes);
+	const notebooks = useSelector((state) => state.notebooks.notebooks);
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(getNotes());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getNotes())
+	// }, [notes]);
 
-	const notebook = user.note_books.find(
-		(notebook) => notebook.id == notebookId
-	);
+	const notebook = notebooks.find((notebook) => notebook.id == notebookId);
 
 	const notebookNotes = notes.filter((note) => note.note_book_id == notebookId);
 	const uniqueTabs = [...new Set(notebookNotes.map((data) => data.tab))];
-	// const uniqueTabs = [...new Set(notebook.notes.map((data) => data.tab))];
 
 	const [searchResults, setSearchResults] = useState("");
 

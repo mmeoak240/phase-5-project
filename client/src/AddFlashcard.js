@@ -9,13 +9,14 @@ const AddFlashcard = () => {
 	const [back, setBack] = useState("");
 	const [tab, setTab] = useState("");
 	const [notebookId, setNotebookId] = useState(null);
+	const notebooks = useSelector((store) => store.notebooks.notebooks);
 
 	const dispatch = useDispatch();
 
 	const user = useSelector((store) => store.users.user);
 	const formErrors = useSelector((state) => state.flashcards.error);
 
-	const notebooks = user.note_books;
+	// const notebooks = user.note_books;
 
 	const handleChange = (event) => {
 		setNotebookId(event.target.value);

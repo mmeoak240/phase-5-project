@@ -10,23 +10,18 @@ const Flashcards = () => {
 	const [flipped, setFlipped] = useState(false);
 	const params = useParams();
 	const notebookId = params.notebook_id;
-	const user = useSelector((state) => state.users.user);
-	// const flashcards = useSelector((state) => state.flashcards.flashcards);
+	// const user = useSelector((state) => state.users.user);
+	const notebooks = useSelector((state) => state.notebooks.notebooks);
+	const flashcards = useSelector((store) => store.flashcards.flashcards);
 	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	dispatch(getFlashcards());
-	// }, []);
+	const notebook = notebooks.find((notebook) => notebook.id == notebookId);
 
-	const notebook = user.note_books.find(
-		(notebook) => notebook.id == notebookId
+	// const notebookFlashcards = notebook.flashcards;
+
+	const notebookFlashcards = flashcards.filter(
+		(card) => card.note_book_id == notebookId
 	);
-
-	// const notebookFlashcards = flashcards.filter(
-	// 	(flashcard) => flashcard.note_book_id == notebookId
-	// );
-
-	const notebookFlashcards = notebook.flashcards;
 
 	const [searchResults, setSearchResults] = useState("");
 	const handleChange = (event) => {
@@ -57,7 +52,7 @@ const Flashcards = () => {
 	}
 
 	function handleDeleteFlashcard(id) {
-		dispatch(deleteFlashcard(id));
+		dispatch(deleteFlashcard(id)).then(() => dispatch(getFlashcards()));
 	}
 
 	const selectedNotebookFlashcards = notebookFlashcards.filter((flashcard) =>

@@ -2,18 +2,21 @@ import React, { useEffect } from "react";
 import NoteBookCard from "./NoteBookCard";
 import NavBar from "./NavBar";
 import { useSelector, useDispatch } from "react-redux";
-import { getNotebooks } from "./features/notebooks/notebooksSlice";
+import { getNotes } from "./features/notebooks/notebooksSlice";
 
 const NoteBooks = () => {
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.users.user);
 	const notes = useSelector((store) => store.notebooks.notes);
-	// const notebooks = useSelector((store) => store.notebooks.notebooks);
+	const notebooks = useSelector((store) => store.notebooks.notebooks);
 
-	const notebooks = user.note_books;
+	console.log(notebooks);
+
+	// const notebooks = user.note_books;
 
 	// useEffect(() => {
-	// 	dispatch(getNotebooks());
+	// 	dispatch(getNotes());
+	// 	dispatch(getFlashcards());
 	// }, []);
 
 	return (
