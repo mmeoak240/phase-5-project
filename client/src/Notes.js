@@ -5,27 +5,31 @@ import NavBar from "./NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteNote } from "../src/features/notebooks/notebooksSlice";
 import { getNotes } from "../src/features/notebooks/notebooksSlice";
+import { getNotebooks } from "../src/features/notebooks/notebooksSlice";
 
 const Notes = () => {
 	const [page, setpage] = useState(0);
 	const [pageNumber, setPageNumber] = useState(1);
 	const params = useParams();
 	const notebookId = params.notebook_id;
-	const user = useSelector((state) => state.users.user);
+	// const user = useSelector((state) => state.users.user);
 	const notes = useSelector((state) => state.notebooks.notes);
 	const notebooks = useSelector((state) => state.notebooks.notebooks);
 	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	dispatch(getNotes())
-	// }, [notes]);
+	console.log(notebooks);
 
 	const notebook = notebooks.find((notebook) => notebook.id == notebookId);
 
 	const notebookNotes = notes.filter((note) => note.note_book_id == notebookId);
+
 	const uniqueTabs = [...new Set(notebookNotes.map((data) => data.tab))];
 
 	const [searchResults, setSearchResults] = useState("");
+
+	useEffect(() => {
+		console.log("UseEffect worked");
+	}, []);
 
 	const handleChange = (event) => {
 		setSearchResults(event.target.value);
@@ -82,9 +86,7 @@ const Notes = () => {
 	return (
 		<>
 			<NavBar />
-			<h1 className="noteTitle">
-				{notebook.subject} : {searchResults}
-			</h1>
+			<h1 className="noteTitle">Category: {searchResults}</h1>
 			<br></br>
 			<select
 				name="notes"
@@ -98,6 +100,7 @@ const Notes = () => {
 				))}
 			</select>
 			<br></br>
+
 			<button class="flashcard-btn">
 				{" "}
 				<NavLink to={`/notebooks/${notebookId}/flashcards`}>Flashcards</NavLink>

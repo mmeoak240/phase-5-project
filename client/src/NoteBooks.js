@@ -10,8 +10,6 @@ const NoteBooks = () => {
 	const notes = useSelector((store) => store.notebooks.notes);
 	const notebooks = useSelector((store) => store.notebooks.notebooks);
 
-	console.log(notebooks);
-
 	// const notebooks = user.note_books;
 
 	// useEffect(() => {

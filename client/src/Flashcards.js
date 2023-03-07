@@ -106,9 +106,7 @@ const Flashcards = () => {
 				<h1>No Flashcards Added</h1>
 			) : (
 				<>
-					<h1 className="noteTitle">
-						{notebook.subject} : {searchResults}
-					</h1>
+					<h1 className="noteTitle">Category : {searchResults}</h1>
 					<br></br>
 					<select
 						name="flashcards"

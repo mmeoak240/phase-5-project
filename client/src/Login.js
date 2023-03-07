@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../src/features/users/usersSlice";
+import { clearErrors } from "./features/users/usersSlice";
 import "./App.css";
 
 function Login() {
@@ -10,6 +11,10 @@ function Login() {
 
 	const dispatch = useDispatch();
 	const loginErrors = useSelector((state) => state.users.error);
+
+	function handleClearErrors() {
+		dispatch(clearErrors());
+	}
 
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -49,7 +54,7 @@ function Login() {
 				<button type="submit">Login</button>
 
 				<NavLink to="/signup">
-					<button>Signup</button>
+					<button onClick={handleClearErrors}>Signup</button>
 				</NavLink>
 
 				<ul>

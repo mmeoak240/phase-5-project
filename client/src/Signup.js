@@ -1,39 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "./features/users/usersSlice";
+import { clearErrors } from "./features/users/usersSlice";
 
 function SignUp({ onLogin }) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordConfirmation, setPasswordConfirmation] = useState("");
 	const [major, setMajor] = useState("");
-	const [passwordError, setPasswordError] = useState("");
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const signupErrors = useSelector((state) => state.users.error);
 
+	function handleClearErrors() {
+		dispatch(clearErrors());
+	}
+
 	function onSubmit(e) {
 		e.preventDefault();
-		if (password !== passwordConfirmation) {
-			setPasswordError("Passwords do not match!");
-		} else {
-			const user = {
-				username,
-				password,
-				password_confirmation: passwordConfirmation,
-				major,
-			};
 
-			dispatch(signup(user));
-			navigate("/", { replace: true });
+		const user = {
+			username,
+			password,
+			password_confirmation: passwordConfirmation,
+			major,
+		};
 
-			setUsername("");
-			setPassword("");
-			setPasswordConfirmation("");
-			setMajor("");
-		}
+		dispatch(signup(user)).then((r) => {
+			if (r.ok) {
+				navigate("/", { replace: true });
+			} else {
+				navigate("/signup", { replace: true });
+			}
+		});
+
+		setUsername("");
+		setPassword("");
+		setPasswordConfirmation("");
+		setMajor("");
 	}
 
 	return (
@@ -75,7 +81,6 @@ function SignUp({ onLogin }) {
 					value={passwordConfirmation}
 					onChange={(e) => setPasswordConfirmation(e.target.value)}
 				/>
-				<span>{passwordError ? { passwordError } : null}</span>
 				<label htmlFor="goals" class="label">
 					Major
 				</label>
@@ -89,7 +94,7 @@ function SignUp({ onLogin }) {
 				/>
 				<button type="submit">Signup</button>
 				<NavLink to="/">
-					<button>Login</button>
+					<button onClick={handleClearErrors}>Login</button>
 				</NavLink>
 				<ul>
 					<p>

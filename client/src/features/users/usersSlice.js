@@ -58,6 +58,9 @@ const usersSlice = createSlice({
 		userAdded(state, action) {
 			state.user = action.payload;
 		},
+		clearErrors(state) {
+			state.error = null;
+		},
 	},
 	extraReducers: {
 		[login.pending](state) {
@@ -109,5 +112,6 @@ const usersSlice = createSlice({
 });
 
 export const { userAdded } = usersSlice.actions;
+export const { clearErrors } = usersSlice.actions;
 
 export default usersSlice.reducer;

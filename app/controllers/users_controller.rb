@@ -8,14 +8,22 @@ class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
+  # def create
+  #   user = User.create(user_params)
+  #   if user.valid?
+  #     session[:user_id] = user.id
+  #     render json: user, status: :created
+  #   else
+  #     render json: { errors: record.errors.full_messages }, status: :unauthorized
+  #   end
+  # end
+
   def create
-    user = User.create(user_params)
-    if user.valid?
-      session[:user_id] = user.id
-      render json: user, status: :created
-    else
-      render json: { errors: ["Invalid username or password"] }, status: :unauthorized
-    end
+    user = User.create!(user_params)
+    session[:user_id] = user.id
+    render json: user, status: :created
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { errors: e.record.errors.full_messages }, status: :conflict
   end
 
   def show
