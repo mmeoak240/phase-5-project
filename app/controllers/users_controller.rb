@@ -31,9 +31,16 @@ class UsersController < ApplicationController
     render json: user
   end
 
+
+
   def update
-    @current_user.update(user_params)
-    render json: @current_user, status: :ok
+    # @current_user.update(user_params)
+    user = User.find_by(id: session[:user_id])
+    user.update(user_params)
+    # render json: @current_user, status: :ok
+    render json: user, status: :ok
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { errors: e.record.errors.full_messages }, status: :conflict
   end
 
   # def update

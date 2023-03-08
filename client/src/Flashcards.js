@@ -52,7 +52,8 @@ const Flashcards = () => {
 	}
 
 	function handleDeleteFlashcard(id) {
-		dispatch(deleteFlashcard(id)).then(() => dispatch(getFlashcards()));
+		dispatch(deleteFlashcard(id));
+		setSearchResults("");
 	}
 
 	const selectedNotebookFlashcards = notebookFlashcards.filter((flashcard) =>

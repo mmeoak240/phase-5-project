@@ -11,35 +11,22 @@ const Account = () => {
 	const [confirmPassword, setConfirmPassword] = useState(`${user.password}`);
 	const [major, setMajor] = useState(`${user.major}`);
 	const accountEditErrors = useSelector((state) => state.users.error);
-	const [passwordError, setPasswordError] = useState("");
 
 	const dispatch = useDispatch();
-	console.log(password);
 
 	function handleSubmit(event) {
 		event.preventDefault();
-		if (password !== confirmPassword) {
-			setPasswordError("Passwords do not match!");
-			return null;
-		} else {
-			const updatedInfo = {
-				id: user.id,
-				username: username,
-				password: password,
-				password_confirmation: confirmPassword,
-				major: major,
-			};
-			dispatch(updateUser(updatedInfo));
-			resetInputs();
-		}
+
+		const updatedInfo = {
+			id: user.id,
+			username: username,
+			password: password,
+			password_confirmation: confirmPassword,
+			major: major,
+		};
+		dispatch(updateUser(updatedInfo));
 	}
 
-	function resetInputs() {
-		setUsername("");
-		setPassword("");
-		setConfirmPassword("");
-		setMajor("");
-	}
 	return (
 		<>
 			<NavBar />
@@ -86,7 +73,7 @@ const Account = () => {
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 					/>
-					<span>{passwordError ? { passwordError } : null}</span>
+
 					<label htmlFor="goals" class="label">
 						Major
 					</label>
@@ -99,15 +86,17 @@ const Account = () => {
 						onChange={(e) => setMajor(e.target.value)}
 					/>
 					<button type="submit">Confirm</button>
-				</form>
 
-				<div>
-					{accountEditErrors ? (
-						accountEditErrors.errors.map((error) => <h4>{error}</h4>)
-					) : (
-						<span></span>
-					)}
-				</div>
+					<ul>
+						<p>
+							{accountEditErrors ? (
+								accountEditErrors.errors.map((error) => <h4>{error}</h4>)
+							) : (
+								<span></span>
+							)}
+						</p>
+					</ul>
+				</form>
 			</div>
 		</>
 	);

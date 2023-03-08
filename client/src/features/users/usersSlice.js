@@ -47,6 +47,7 @@ export const updateUser = createAsyncThunk(
 			body: JSON.stringify(updatedUser),
 		});
 		const user = await res.json();
+		debugger;
 		return user;
 	}
 );
